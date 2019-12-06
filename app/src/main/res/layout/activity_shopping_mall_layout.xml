@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/shopping_bg">
+
+    <ImageView
+        android:id="@+id/green_back"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_22"
+        android:src="@mipmap/green_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/for_record"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_22"
+        android:src="@mipmap/for_record_bg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/shopping_mall_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_45"
+        android:layout_marginRight="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@mipmap/shopping_mall_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/shopping_tablayout"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/shopping_viewpage"
+        app:layout_constraintLeft_toLeftOf="@+id/shopping_viewpage"
+        app:tabBackground="@drawable/shopping_tab_bg_selector"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="0dp"
+        app:tabGravity="center"
+        app:tabRippleColor="@color/transparent"
+        app:tabSelectedTextColor="@color/color_274701"
+        app:tabTextAppearance="@style/tab_kayout_text_style"
+        app:tabTextColor="@color/color_274701">
+
+    </android.support.design.widget.TabLayout>
+
+    <TextView
+        android:id="@+id/text_money"
+        android:layout_width="@dimen/dp_71"
+        android:layout_height="@dimen/dp_19"
+        android:layout_marginRight="@dimen/dp_5"
+        android:background="@mipmap/main_money_background"
+        android:paddingRight="@dimen/dp_5"
+        android:gravity="center"
+        android:textColor="@color/color_a9500c"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/main_money_add"
+        app:layout_constraintRight_toLeftOf="@+id/main_money_add"
+        app:layout_constraintTop_toTopOf="@+id/main_money_add" />
+
+    <ImageView
+        android:id="@+id/main_money_image"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_25"
+        android:src="@mipmap/main_money_image"
+        app:layout_constraintBottom_toBottomOf="@+id/text_money"
+        app:layout_constraintRight_toLeftOf="@+id/text_money"
+        app:layout_constraintLeft_toLeftOf="@+id/text_money" />
+
+    <ImageView
+        android:id="@+id/main_money_add"
+        android:layout_width="@dimen/dp_25"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
+        android:src="@mipmap/main_money_add"
+        app:layout_constraintBottom_toTopOf="@+id/shopping_viewpage"
+        app:layout_constraintRight_toRightOf="@+id/shopping_viewpage" />
+
+    <com.xswq.consumer.view.NoScrollViewPager
+        android:id="@+id/shopping_viewpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_60"
+        android:layout_marginRight="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_94"
+        android:background="@mipmap/shopping_mall_view_pager_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

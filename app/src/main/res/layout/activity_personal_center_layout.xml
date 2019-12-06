@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/personal_cente_bg">
+
+    <ImageView
+        android:id="@+id/green_back"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_14"
+        android:src="@mipmap/green_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/personal_cente_sidebar"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_285"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:background="@mipmap/personal_cente_bg2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/green_back" />
+
+    <ImageView
+        android:id="@+id/personal_cente_basic_information"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_49"
+        android:visibility="invisible"
+        android:background="@mipmap/personal_cente_uncheck"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintBottom_toBottomOf="@+id/personal_cente_sidebar"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_sidebar"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <ImageView
+        android:id="@+id/personal_cente_basic_information2"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:background="@mipmap/personal_cente_check"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintBottom_toBottomOf="@+id/personal_cente_sidebar"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_sidebar"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/personal_cente_basic_information_text"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_45"
+        android:drawableTop="@mipmap/personal_cente_basic_information_check"
+        android:gravity="center"
+        android:text="基本信息"
+        android:textColor="@color/color_274701"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/personal_cente_basic_information"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_basic_information"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_basic_information"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_basic_information" />
+
+
+    <ImageView
+        android:id="@+id/personal_cente_leve_information"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/personal_cente_uncheck"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toBottomOf="@+id/personal_cente_basic_information" />
+
+
+    <ImageView
+        android:id="@+id/personal_cente_leve_information2"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_5"
+        android:visibility="invisible"
+        android:background="@mipmap/personal_cente_check"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toBottomOf="@+id/personal_cente_basic_information" />
+
+    <TextView
+        android:id="@+id/personal_cente_leve_information_text"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_45"
+        android:drawableTop="@mipmap/personal_cente_leve_information_uncheck"
+        android:gravity="center"
+        android:text="棋力信息"
+        android:textColor="@color/color_7e2c00"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/personal_cente_leve_information"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_leve_information"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_leve_information"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_leve_information" />
+
+    <ImageView
+        android:id="@+id/personal_cente_my_achievements"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/personal_cente_uncheck"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toBottomOf="@+id/personal_cente_leve_information" />
+
+
+    <ImageView
+        android:id="@+id/personal_cente_my_achievements2"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:background="@mipmap/personal_cente_check"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toBottomOf="@+id/personal_cente_leve_information" />
+
+    <TextView
+        android:id="@+id/personal_cente_my_achievements_text"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_45"
+        android:drawableTop="@mipmap/personal_cente_my_achievements_uncheck"
+        android:gravity="center"
+        android:text="我的成就"
+        android:textColor="@color/color_7e2c00"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/personal_cente_my_achievements"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_my_achievements"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_my_achievements"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_my_achievements" />
+
+    <ImageView
+        android:id="@+id/red_dot"
+        android:layout_width="@dimen/dp_9"
+        android:layout_height="@dimen/dp_9"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/red_dot"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_my_achievements"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_my_achievements" />
+
+    <ImageView
+        android:id="@+id/personal_cente_special_effects"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/personal_cente_uncheck"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toBottomOf="@+id/personal_cente_my_achievements" />
+
+    <ImageView
+        android:id="@+id/personal_cente_special_effects2"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_49"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:visibility="invisible"
+        android:background="@mipmap/personal_cente_check"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_sidebar"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_sidebar"
+        app:layout_constraintTop_toBottomOf="@+id/personal_cente_my_achievements"/>
+
+    <TextView
+        android:id="@+id/personal_cente_special_effects_text"
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_45"
+        android:drawableTop="@mipmap/personal_cente_special_effects_uncheck"
+        android:gravity="center"
+        android:text="皮肤特效"
+        android:textColor="@color/color_7e2c00"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/personal_cente_special_effects"
+        app:layout_constraintLeft_toLeftOf="@+id/personal_cente_special_effects"
+        app:layout_constraintRight_toRightOf="@+id/personal_cente_special_effects"
+        app:layout_constraintTop_toTopOf="@+id/personal_cente_special_effects" />
+
+    <com.xswq.consumer.view.MyViewPager
+        android:id="@+id/personal_cente_special_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_130"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

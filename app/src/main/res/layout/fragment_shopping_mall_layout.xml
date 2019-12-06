@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_last_bg"
+        android:layout_width="@dimen/dp_22"
+        android:layout_height="@dimen/dp_30"
+        android:background="@mipmap/image_last_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/shopping_mall_rv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/shopping_mall_rv"
+        app:layout_constraintTop_toTopOf="@+id/shopping_mall_rv" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shopping_mall_rv"
+        android:layout_width="@dimen/dp_310"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/image_last_bg"
+        app:layout_constraintRight_toLeftOf="@+id/image_next_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_next_bg"
+        android:layout_width="@dimen/dp_22"
+        android:layout_height="@dimen/dp_30"
+        android:background="@mipmap/image_next_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/shopping_mall_rv"
+        app:layout_constraintLeft_toRightOf="@+id/shopping_mall_rv"
+        app:layout_constraintRight_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toTopOf="@+id/shopping_mall_rv" />
+
+    <ImageView
+        android:id="@+id/shape_shopping_mall_bg"
+        android:layout_width="@dimen/dp_128"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_7"
+        android:background="@drawable/shape_shopping_mall_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/image_next_bg"
+        app:layout_constraintRight_toLeftOf="@+id/shape_shopping_chess_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flash_gift_bag"
+        android:layout_width="@dimen/dp_102"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_7"
+        android:textColor="@color/color_ff6400"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toTopOf="@+id/shape_shopping_mall_bg" />
+
+    <ImageView
+        android:id="@+id/shape_shopping_light"
+        android:layout_width="@dimen/dp_115"
+        android:layout_height="@dimen/dp_117"
+        android:background="@mipmap/shape_shopping_light"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toTopOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/shopping_image"
+        android:layout_width="@dimen/dp_105"
+        android:layout_height="@dimen/dp_105"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_shopping_light"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_light"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_light"
+        app:layout_constraintTop_toTopOf="@+id/shape_shopping_light"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="@dimen/dp_65"
+        android:layout_height="@dimen/dp_76"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_shopping_light"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_light"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_light"
+        app:layout_constraintTop_toTopOf="@+id/shape_shopping_light" />
+
+
+    <TextView
+        android:id="@+id/shopping_name"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/color_813102"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@+id/shopping_introduce"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toBottomOf="@+id/shape_shopping_light" />
+
+
+    <TextView
+        android:id="@+id/shopping_introduce"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="2"
+        android:textColor="@color/color_813102"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shopping_button"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toBottomOf="@+id/shopping_name" />
+
+
+    <Button
+        android:id="@+id/shopping_button"
+        android:layout_width="@dimen/dp_89"
+        android:layout_height="@dimen/dp_23"
+        android:background="@mipmap/green_button"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="购买"
+        android:textColor="@color/color_4b8e05"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toBottomOf="@+id/shopping_introduce" />
+
+    <ImageView
+        android:id="@+id/shape_shopping_chess_image"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@mipmap/play_chess_un_select"
+        app:layout_constraintLeft_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/shape_shopping_chess_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:gravity="center"
+        android:text="已拥有"
+        android:textColor="@color/color_813102"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_chess_image"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_chess_image"
+        app:layout_constraintTop_toBottomOf="@+id/shape_shopping_chess_image" />
+
+
+    <TextView
+        android:id="@+id/no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂无数据"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/shopping_mall_rv"
+        app:layout_constraintLeft_toLeftOf="@+id/shopping_mall_rv"
+        app:layout_constraintRight_toRightOf="@+id/shopping_mall_rv"
+        app:layout_constraintTop_toTopOf="@+id/shopping_mall_rv" />
+</android.support.constraint.ConstraintLayout>

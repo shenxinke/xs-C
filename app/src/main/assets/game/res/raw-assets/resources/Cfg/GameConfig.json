@@ -1,0 +1,45 @@
+{
+   "_chapter_cfg_comment":"chapter_cfg bg path relevant this assets/resources",
+    "chapter_cfg" : [
+      { "chapter": 1001 , "bg":"Texture/Maps/duizhanditu_caodi" , "unlock_stars":0 , "boss_mission":3 },
+      { "chapter": 1003 , "bg":"Texture/Maps/duizhanditu_senlin" , "unlock_stars":3, "boss_mission":5 },
+      { "chapter": 1004 , "bg":"Texture/Maps/duizhan_lake" , "unlock_stars":8, "boss_mission":6 },
+      { "chapter": 1009 , "bg":"Texture/Maps/duizhanditu_senlin" , "unlock_stars":15, "boss_mission":8 },
+      { "chapter": 1010 , "bg":"Texture/Maps/duizhan_lake" , "unlock_stars":20, "boss_mission":10 },
+      { "chapter": 4008 , "bg":"Texture/Maps/duizhan_lake" , "unlock_stars":30, "boss_mission":12 },
+      { "chapter": 4011 , "bg":"Texture/Maps/duizhanditu_senlin" , "unlock_stars":40, "boss_mission":12},
+      { "chapter": 4012 , "bg":"Texture/Maps/duizhanditu_caodi" , "unlock_stars":55, "boss_mission":12 },
+      { "chapter": 5002 , "bg":"Texture/Maps/duizhanditu_senlin" , "unlock_stars":65, "boss_mission":12},
+      { "chapter": 6005 , "bg":"Texture/Maps/duizhanditu_senlin" , "unlock_stars":65, "boss_mission":12 },
+      { "chapter": 6006 , "bg":"Texture/Maps/duizhanditu_caodi" , "unlock_stars":65, "boss_mission":12 },
+      { "chapter": 6007 , "bg":"Texture/Maps/duizhanditu_caodi" , "unlock_stars":65, "boss_mission":12}     
+    ],
+    
+
+  "_init_data_comment":"set player default data when create a player",
+  "init_data":{
+    "init_gold":100,
+    "init_power":60,
+    "init_item_time":true,
+    "init_item_step":true
+  },
+
+  "_player_cfg_comment":"", 
+
+  "player_cfg":{
+    "power_upper_limit":120,
+    "recover_power_interval_secs":300,
+    "normal_mission_power_cost":4,
+    "boss_mission_power_cost":6,
+	"normal_mission_win_gold_per_star":10,
+	"boss_mission_win_gold_per_star":20
+  },
+
+  "_item_cfg_comment":"",
+  "item_cfg":{
+    "item_step_cost":10,
+    "item_time_cost":10,
+    "item_time_add" :10,
+    "item_step_add" :2
+  }
+}

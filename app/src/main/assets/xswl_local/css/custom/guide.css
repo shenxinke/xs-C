@@ -1,0 +1,124 @@
+.w80{
+	width: 0.8rem;
+}
+.w309{
+	width: 3.09rem;
+}
+.w320{
+	width: 3.2rem;
+}
+.w552{
+	width: 5.52rem;
+}
+.w596{
+	width: 5.96rem;
+}
+.w687{
+	width: 6.87rem;
+}
+.h80{
+	height: 0.8rem;
+}
+.h96{
+	height: 0.96rem;
+}
+.h144{
+	height: 1.44rem;
+}
+
+.tp150{
+	top: 1.5rem;
+}
+.tp450{
+	top: 4.5rem;
+}
+.tp500{
+	top: 5rem;
+}
+
+.lta4{
+	left: 4%;
+}
+.lta50{
+	left: 50%;
+}
+.lta53{
+	left: 53%;
+}
+.lta55{
+	left: 55%;
+}
+.lta70{
+	left: 70%;
+}
+.lta75{
+	left: 75%;
+}
+.lt100{
+	left: 1rem;
+}
+.lt700{
+	left: 7rem;
+}
+#guide2.guide2{
+	position:relative;
+	z-index:11;
+	background:#fff;
+	padding-left:0.15rem;
+}
+#guide3.guide3{
+	position:relative;
+	z-index:11;
+	box-shadow: 0px 0px 0.3rem #fff;
+}
+#guide4.guide4{
+	position:relative;
+	z-index:11;
+}
+
+#canvas_wrapper.guide2{
+	position:relative;
+	z-index:11;
+}
+
+.tr05{
+	transition: 0.5s;
+}
+
+
+/* 光圈 */
+.ripple{
+	animation: ripple 1s  ease-in infinite
+}
+.ripple2{
+	animation: ripple 1s 0.3s ease-in infinite
+}
+@keyframes ripple {
+	0%,100%{
+		opcity:0;
+		transform: scale(0.3);
+		background: rgba(106,227,255,0)
+	}
+	25%,50%{
+		opcity:1;
+		transform: scale(1);
+		background: rgba(106,227,255,0.5)
+	}
+	
+}
+
+/* 小拇指 */
+.finger{
+	animation: finger 0.7s 0.5s infinite
+}
+@keyframes finger{
+	0%,100%{
+    	top: 0.3rem;
+    	left: 0.3rem;
+	}
+	25%,50%{
+		top: 0.8rem;
+    	left: 0.8rem;
+	}
+}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+<body>
+		<div >
+  			<input type="text"  id="log_userid" value="18301518508">
+      		<input type="password" id="log_password" value="f5bb0c8de146c67b44babbf4e6584cc0">
+  		<div id="log_submit_btn" onclick="aaa()">登录</div>
+  		</div>
+  		<br>
+  		<br>
+  		<br>
+  		<input id="token">
+  		<input id="ids">
+  		<div id="匹配" onclick="bbb()">匹配</div>
+  	<form action="/consumerXSWQ/UploadImgController/uploadImg" method="post" enctype="multipart/form-data">
+    	<input type="file" name="file">
+    	<input type="submit" value="提交">
+	</form>
+</body>
+<script type="text/javascript">
+  
+  function aaa(){
+  
+  		var userId = $("#log_userid").val();
+  		var md5pass = $("#log_password").val();
+  		$.ajax({
+			type : 'POST',
+			url : '/consumerXSWQ/LoginController/login',
+			data : $.param({
+				'mobile' : userId,
+				'md5pass' : md5pass
+			}),
+			dataType : 'json',
+			success : function(data) {
+				if (data.error.returnCode == 0) {
+				$("#token").val(data.data.userInfo.token);
+				$("#ids").val(data.data.userInfo.id);
+				}
+			}
+		});
+		
+  }
+	function bbb(){
+	$.ajax({
+			type : 'POST',
+			url : '/consumerXSWQ/ChessController/randomBattle',
+			data : $.param({
+				'uid' : $("#ids").val(),
+				'token' : $("#token").val(),
+			}),
+			dataType : 'json',
+			success : function(data) {
+			}
+		});
+	}	
+  </script>
+</html>

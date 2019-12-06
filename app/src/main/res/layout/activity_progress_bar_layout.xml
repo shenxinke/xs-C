@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_200"
+        android:background="@mipmap/system_about_us_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="匹配中..."
+        android:textColor="@color/color_8d3c00"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar" />
+
+    <com.xswq.consumer.view.MyBarPercentView
+        android:id="@+id/my_progress_bar"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_15"
+        app:barIsGradient="false"
+        app:barProgressColor="@color/color_ffc000"
+        app:barBgColor="@color/color_fff2ac"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view"
+        app:layout_constraintLeft_toLeftOf="@+id/image_view"
+        app:layout_constraintRight_toRightOf="@+id/image_view"
+        app:layout_constraintTop_toTopOf="@+id/image_view"
+          />
+
+    <Button
+        android:id="@+id/green_button"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_30"
+        android:background="@mipmap/green_button"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="取消"
+        android:textColor="@color/color_274701"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/my_progress_bar" />
+</android.support.constraint.ConstraintLayout>

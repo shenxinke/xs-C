@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item
+        android:drawable="@drawable/push_animation_3_0"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_1"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_2"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_3"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_4"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_5"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_6"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_7"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_8"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_9"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_10"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_11"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_12"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_13"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_14"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_15"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_16"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_17"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_18"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_19"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_20"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_21"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_22"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_23"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_24"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_25"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_26"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_27"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_28"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_29"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_30"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_31"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_32"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_33"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_34"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_35"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_36"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_37"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_38"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_39"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_40"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_41"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_42"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_43"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_44"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_45"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_46"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_47"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_48"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_49"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_50"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_51"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_52"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_53"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_54"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_55"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_56"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_57"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_58"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_59"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_60"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_61"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_62"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_63"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_64"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_65"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_66"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_67"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_69"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_70"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_71"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_72"
+        android:duration="80" />
+    <item
+        android:drawable="@drawable/push_animation_3_73"
+        android:duration="80" />
+</animation-list>

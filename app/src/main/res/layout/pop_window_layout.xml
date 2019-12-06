@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bg_image"
+        android:background="@color/half"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/popup_window_bg"
+        android:layout_width="@dimen/dp_412"
+        android:layout_height="@dimen/dp_211"
+        android:background="@mipmap/universal_popwindow_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/popup_window_content"
+        android:layout_width="@dimen/dp_221"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_8e5605"
+        android:textSize="18sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/popup_window_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/popup_window_bg"
+        app:layout_constraintRight_toRightOf="@+id/popup_window_bg"
+        app:layout_constraintTop_toTopOf="@+id/popup_window_bg"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_30"
+        android:background="@mipmap/green_button"
+        android:paddingBottom="@dimen/dp_5"
+        android:textColor="@color/color_4b8e05"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/popup_window_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/popup_window_bg"
+        app:layout_constraintRight_toLeftOf="@+id/button_cancel"
+        app:layout_constraintTop_toTopOf="@+id/popup_window_bg"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_30"
+        android:background="@mipmap/yellow_button_bg"
+        android:paddingBottom="@dimen/dp_5"
+        android:textColor="@color/color_8e5605"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/button_save"
+        app:layout_constraintRight_toRightOf="@+id/popup_window_bg"
+        app:layout_constraintTop_toTopOf="@+id/button_save" />
+</android.support.constraint.ConstraintLayout>

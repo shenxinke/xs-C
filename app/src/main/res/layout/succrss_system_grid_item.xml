@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iamge_backgroud"
+        android:layout_width="@dimen/dp_93"
+        android:layout_height="@dimen/dp_134"
+        android:background="@drawable/shape_basic_information_bg" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="@dimen/dp_89"
+        android:layout_height="@dimen/dp_73"
+        android:layout_marginTop="@dimen/dp_10"
+        android:src="@mipmap/aoyoutree"
+        app:layout_constraintLeft_toLeftOf="@+id/iamge_backgroud"
+        app:layout_constraintRight_toRightOf="@+id/iamge_backgroud"
+        app:layout_constraintTop_toTopOf="@+id/iamge_backgroud" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_7e2c00"
+        android:textSize="13sp"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintLeft_toLeftOf="@+id/image_view"
+        app:layout_constraintRight_toRightOf="@+id/image_view"
+        app:layout_constraintTop_toBottomOf="@+id/image_view" />
+
+
+    <com.xswq.consumer.view.MyProgressBar
+        android:id="@+id/my_progress_bar"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_13"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dp_5"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@+id/image_view"
+        app:layout_constraintRight_toRightOf="@+id/image_view"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        app:nearOverText=""
+        app:overText="" />
+
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_7e2c00"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/my_progress_bar" />
+
+    <Button
+        android:id="@+id/but_receive_award"
+        android:text="领取奖励"
+        android:textSize="9sp"
+        android:paddingBottom="@dimen/dp_3"
+        app:layout_constraintBottom_toBottomOf="@+id/my_progress_bar"
+        app:layout_constraintLeft_toLeftOf="@+id/my_progress_bar"
+        app:layout_constraintRight_toRightOf="@+id/my_progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/my_progress_bar"
+        android:textColor="@color/color_8e5605"
+        android:background="@mipmap/yellow_button_bg"
+        android:layout_width="@dimen/dp_58"
+        android:layout_height="@dimen/dp_20" />
+</android.support.constraint.ConstraintLayout>

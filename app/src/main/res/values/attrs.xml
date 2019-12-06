@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--成就进度条-->
+    <declare-styleable name="MyProgressBar">
+        <attr name="sideColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="sideWidth" format="dimension" />
+        <attr name="overText" format="string" />
+        <attr name="nearOverText" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="isNeedAnim" format="boolean" />
+    </declare-styleable>
+
+    <!--匹配进度条-->
+    <declare-styleable name="BarPercentView">
+        <!--进度条高度-->
+        <attr name="barHeight" format="dimension" />
+        <!--圆角矩形半径-->
+        <attr name="barRadius" format="integer" />
+        <!--进度条背景色-->
+        <attr name="barBgColor" format="reference" />
+        <!--进度条颜色-->
+        <attr name="barProgressColor" format="reference" />
+        <!--渐变开始颜色-->
+        <attr name="barStartColor" format="reference" />
+        <!--渐变结束颜色-->
+        <attr name="barEndColor" format="reference" />
+        <!--是否渐变-->
+        <attr name="barIsGradient" format="boolean" />
+    </declare-styleable>
+</resources>

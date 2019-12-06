@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <ImageView
+        android:id="@+id/show_cdkey_bg"
+        android:layout_width="@dimen/dp_330"
+        android:layout_height="@dimen/dp_265"
+        android:background="@mipmap/show_cdkey_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_25"
+        android:text="兑换成功"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/show_cdkey_bg"
+        app:layout_constraintRight_toRightOf="@+id/show_cdkey_bg"
+        app:layout_constraintTop_toTopOf="@+id/show_cdkey_bg" />
+
+    <ImageView
+        android:id="@+id/shape_shopping_mall_bg"
+        android:layout_width="@dimen/dp_116"
+        android:layout_height="@dimen/dp_137"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@drawable/shape_shopping_mall_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/show_cdkey_bg"
+        app:layout_constraintRight_toRightOf="@+id/show_cdkey_bg"
+        app:layout_constraintTop_toBottomOf="@+id/title_text" />
+
+
+    <ImageView
+        android:id="@+id/shape_shopping_light"
+        android:layout_width="@dimen/dp_115"
+        android:layout_height="@dimen/dp_100"
+        android:background="@mipmap/shape_shopping_light"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toTopOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="@dimen/dp_65"
+        android:layout_height="@dimen/dp_76"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_shopping_light"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_light"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_light"
+        app:layout_constraintTop_toTopOf="@+id/shape_shopping_light" />
+
+    <TextView
+        android:id="@+id/shopping_name"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/color_813102"
+        android:textSize="11sp"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_shopping_mall_bg"
+        app:layout_constraintTop_toBottomOf="@+id/shape_shopping_light" />
+
+    <Button
+        android:id="@+id/yellow_button_bg"
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@mipmap/yellow_button_bg"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="确定"
+        android:textColor="@color/color_8e5605"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/show_cdkey_bg"
+        app:layout_constraintRight_toRightOf="@+id/show_cdkey_bg"
+        app:layout_constraintTop_toBottomOf="@+id/shape_shopping_mall_bg" />
+</android.support.constraint.ConstraintLayout>

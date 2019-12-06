@@ -1,0 +1,27 @@
+
+zengjiashijian.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shijian_zj1
+  rotate: false
+  xy: 2, 40
+  size: 376, 376
+  orig: 376, 376
+  offset: 0, 0
+  index: -1
+shijian_zj2
+  rotate: false
+  xy: 380, 85
+  size: 331, 331
+  orig: 331, 331
+  offset: 0, 0
+  index: -1
+shijian_zj3
+  rotate: false
+  xy: 2, 2
+  size: 136, 36
+  orig: 136, 36
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type="text/javascript" src="js/custom/common.js"></script>
+	<script type="text/javascript" src="js/lib/config.js"  charset="utf-8"></script>
+	<title>先手秘境 </title>
+</head>
+<body>
+	<div class="db rel ha100" id="share">
+		<div class="df bgf jc-sb ai-c wa100 h100 rel plr30">
+			<div class="df ai-c jc-c">
+				<img class="w71" src="img/share/logo.png">
+				<span class="fs30 fwb ml10">先手秘境</span>
+			</div>
+			<button type="button" class="bn play_Undo_btn db h60 w160 tc rel tp6">
+				<span class="mb16 w160 tc db fl fs30 c8e5605 fwb" @click="downLoad">立即下载</span>
+			</button>
+		</div>
+		<div class="shareBg ha100-100 wa100 plr20">
+			<img class="wa100 h220" src="img/share/mainHead.png">
+			<div class="wa100 ha100-230 shareMain m0a rel z101 bt10 pt70">
+				<div class="wa100">
+					<div class="shareMain_title df bgf jc-c ai-c h20 w280 m0a">
+						<img class="w71" src="img/share/demo.png">
+					</div>
+				</div>
+				<div class="wa100 tc fs20 c8e5605 fwb mt30" v-text="userInfo.username"></div>
+				<div class="wa100 pl60 pr60 df jc-fs ai-c rel">
+					<div class="w380 h110 br30 bgffca49 df jc-sa ai-c pr20">
+						<img class="w80" src="img/share/day.png">
+						<span class="fs20">使用天数:</span>
+						<span class="cff5400 fs30" v-text="levelInfo.loginDay+'天'"></span>
+					</div>
+					<img class="w150 h100 abs rt90 tp30" src="img/share/leadRt.png">
+				</div>
+				<div class="wa100 pl60 pr60 df jc-fe ai-c rel mt30">
+					<div class="w380 h110 br30 bgffca49 df jc-sa ai-c pr20">
+						<img class="w80" src="img/share/level.png">
+						<span class="fs20">棋力水平:</span>
+						<span class="cff5400 fs30">{{levelInfo.level|leve}}</span>
+					</div>
+					<img class="w150 h100 abs lt90 tp30" src="img/share/leadLt.png">
+				</div>
+				<div class="wa100 pl60 pr60 df jc-fs ai-c rel mt30">
+					<div class="w380 h110 br30 bgffca49 df jc-sa ai-c pr20">
+						<img class="w80" src="img/share/success.png">
+						<span class="fs20">胜局数:</span>
+						<span class="cff5400 fs30" v-text="levelInfo.playSum"></span>
+					</div>
+					<img class="w150 h100 abs rt90 tp30" src="img/share/leadRt.png">
+				</div>
+				<div class="wa100 pl60 pr60 df jc-fe ai-c rel mt30">
+					<div class="w380 h110 br30 bgffca49 df jc-sa ai-c pr20">
+						<img class="w80" src="img/share/class.png">
+						<span class="fs20">完成课数:</span>
+						<span class="cff5400 fs30" v-text="levelInfo.maxGateNum"></span>
+					</div>
+					<img class="w150 h100 abs lt90 tp30" src="img/share/leadLt.png">
+				</div>
+				<div class="wa100 pl60 pr60 df jc-sb ai-c rel mt30">
+					<div class="w380 h110 br30 bgffca49 df jc-sa ai-c pr20">
+						<img class="w80" src="img/share/question.png">
+						<span class="fs20">做题数:</span>
+						<span class="cff5400 fs30" v-text="levelInfo.userQuestionRecord+'道'"></span>
+					</div>
+					<img class="w140 h110" src="img/share/zan.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	document.documentElement.style.fontSize=document.documentElement.offsetWidth/7.5+"px";
+	Vue.filter("leve",function(leve){
+		if(leve>25){
+			return (leve-25)+'D'
+		}else if(leve<=25 && leve>0){
+			return (26-leve)+'K'
+		}else if(leve==0){
+			return '0'
+		}
+	})
+	var share = new Vue({
+		el:'#share',
+		data:{
+			levelInfo:{},
+			userInfo:{},
+			openId:""
+		},
+		methods:{
+			getLevelInfo(){
+				var $this = this;
+				$.ajax({
+					type : "POST",
+					url : http+"/consumerXSWQ/UserInfoController/getLevelInfo",
+					dataType : 'json',
+					data:"token="+token+"&uid="+uid,
+					success : function(data){
+						$this.levelInfo = data.data
+					},
+					error : function(XMLHttpRequest, data) {
+					}
+				});
+			},
+			getUserInfo(){
+				var $this = this;
+				$.ajax({
+					type : "POST",
+					url : http+"/consumerXSWQ/UserInfoController/getUserInfo",
+					dataType : 'json',
+					data:"token="+token+"&uid="+uid,
+					success : function(data){
+						$this.userInfo = data.data.userInfo
+					},
+					error : function(XMLHttpRequest, data) {
+					}
+				});
+			},
+			insertShareRecord(){
+				
+			},
+			downLoad(){
+				$.ajax({
+					type : "POST",
+					url : http+"/consumerXSWQ/ShareController/insertShareRecord",
+					dataType : 'json',
+					data:"openId="+share.openId+"&userId="+uid,
+					success : function(data){
+						if (navigator.userAgent.match(/(phone|iPhone)/i)) {
+							window.location.href = 'https://itunes.apple.com/cn/app/id1456324394'
+						} else if (navigator.userAgent.match(/(iPad)/i)) {
+							window.location.href = 'https://itunes.apple.com/cn/app/id1456324394'
+						} else if (navigator.userAgent.match(/(Android)/i)) {
+							window.location.href = 'https://consumer.xswq361.cn/download/index.html'
+						} else {
+						
+						}
+					},
+					error : function(XMLHttpRequest, data) {
+					}
+				});
+				//是否在微信打开
+				function is_weixn() {
+					var ua = navigator.userAgent.toLowerCase();
+					if (ua.match(/MicroMessenger/i) == "micromessenger") {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			},
+			getCode(){
+				window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx527e8568449b506f&redirect_uri=https%3A%2F%2Fconsumer.xswq361.cn%2FconsumerXSWQ%2Fshare.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
+			},
+			getOpenId(){
+				var openId = readCookie('openId');
+				var $this = this;
+				if(openId!=null){
+					this.openId = openId
+				}else{
+					if(Tool.queryString('code')!=null){
+						$.ajax({
+							type : "POST",
+							url : http+"/consumerXSWQ/ShareController/getOpenId",
+							dataType : 'json',
+							data:{'code':Tool.queryString('code')},
+							success : function(data){
+								$this.openId = openId;
+								setCookie('openId',data.data)
+							},
+							error : function(XMLHttpRequest, data) {
+							}
+						});
+					}else{
+						$this.getCode();
+					}
+				}
+				//写cookies 
+				function setCookie(name, value) {
+				  localStorage.setItem(name,value);
+				}
+				//读取cookies 
+				function readCookie(name) {
+				 return localStorage.getItem(name)
+				}
+			}
+		},
+		mounted(){
+			this.getLevelInfo();
+			this.getUserInfo();
+			this.getOpenId();
+		}
+	});
+	
+	
+</script>
+</html>

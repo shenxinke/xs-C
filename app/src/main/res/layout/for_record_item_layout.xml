@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/for_record_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_15"
+        android:paddingLeft="@dimen/dp_40"
+        android:paddingTop="@dimen/dp_15"
+        android:textColor="@color/color_be631f"
+        android:textSize="14sp" />
+
+
+</android.support.constraint.ConstraintLayout>

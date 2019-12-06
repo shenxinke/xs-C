@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type="text/javascript" src='js/lib/lottie_svg.min.js'></script>
+	<script type="text/javascript" src="js/custom/common.js"></script>
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<script type="text/javascript" src="js/lib/config.js"  charset="utf-8"></script>
+	<title>先手围棋智能教育服务平台 </title>
+</head>
+<body>
+	<div class="df ai-c jc-c rel" id='game_info_box'>
+		<audio src="music/1.wav" type="hidden" id="lottieMusic" class=""></audio>
+		<div class="df ai-c jc-c w1150 bg_play_main ha100 pr20 mr-70 rel">
+			<div id="canvas_wrapper" class="h750 w750 rel lt10p tp10p">
+				<div id="lottie" class="abs h715 w700 lt0 rt0 tp0 dn z101"></div>
+				<canvas id="gameCanvas" class="abs tp0" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()'></canvas>
+			</div>
+			<div id="game_chat_wrapper" class="w380 h715 bg_playRt df ai-c jc-c">
+				<div class="bg_playRt_main h685 w360">
+					<div class='wa100 h20 fs20 c0059c6 df ai-c jc-c cf tzinfo mt60 fwb letspc3'>规则：黑让3 ¾子</div>
+					<div class='df jc-sb tc h50 br10 wa70 m0a mt50'>
+						<img src="cocos2d/res/WStone1.png" class="w50">
+						<img src="cocos2d/res/BStone2.png" class="w50">
+					</div>
+					<!-- 提子  -->
+					<div class='df jc-sb tc h30 bgfbe4ba br10 w310 m0a mt30'>
+						<span class="take-stone db w150 tc ">
+							<b class='fwn c666 fs20' id="whitetake">0</b>
+						</span>
+						<p class='fs20 w100 h30 bgff7200 br20 lineh30'>
+							<span class='br20 cf'>提子</span>
+						</p>
+						<span class="take-stone db w150 tc ">
+							<b class='fwn c666 fs20' id="blacktake">0</b>
+						</span>
+					</div>
+					<!-- 操作按钮 -->
+					<div class="p10">
+						<button type="button" class="bn on confirmStep db h72 w220 tc m0a mt60" onclick="confirmStep()">
+							<span class="mb16 w220 tc db fl fs30 cba2d38 fwb">确认落子</span>
+						</button>
+						<button type="button" class="bn on play_chessNm_btn db h72 w220 tc m0a mt50" v-if="currentSize=='9'" @click="handlerStatisticalReq9()">
+							<span class="mb16 w220 tc db fl fs30 c4b8e05 fwb">数棋</span>
+						</button>
+						<button type="button" class="bn on play_chessNm_btn db h72 w220 tc m0a mt50" v-else @click="judgement()">
+							<span class="mb16 w220 tc db fl fs30 c4b8e05 fwb">数棋</span>
+						</button>
+						<button type="button" class="bn on play_Undo_btn db h72 w220 tc m0a mt50" onclick="eve.f('HadlerGoToPreviousStep')()">
+							<span class="mb16 w220 tc db fl fs30 c8e5605 fwb">悔棋</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<statistical-result v-if="sttscFlag" :game="resultInfo"></statistical-result>
+	</div>
+	<template id='statisticalResult'>
+		<div class="abs bg05 wa100 ha100 z100 df ai-c jc-c">
+			<div class="h472 w740 activity_sq_main df ac-fs jc-c fw-w">
+				<div class="mt50 fs30 c7e2c00 tc fwb wa100">对弈结果</div>
+				<div class="df ai-c jc-sa wa80 mt50">
+					<div class="w150 df ai-c jc-c fw-w">
+						<img src="cocos2d/res/BStone2.png" class="w100">
+						<span class="wa100 tc c7e2c00 fs30 pt10 blackSum" >{{game.blackSum||0}}</span>
+					</div>
+					<div class="fs20 c7e2c00">黑让3 ¾子</div>
+					<div class="w150 df ai-c jc-c fw-w">
+						<img src="cocos2d/res/WStone1.png" class="w100">
+						<span class="wa100 tc c7e2c00 fs30 pt10 whiteSum">{{game.whiteSum||0}}</span>
+					</div>
+				</div> 
+				<div class="wa100 tc fs30 c7e2c00 fwb judgeInfo" v-text="game.resultInfo"></div>
+				<div class="mt10 wa70 df ai-c jc-sa">
+					<button type="button" class="bn on db h72 w170 tc mtb10 play_agin" @click="creatAgin">
+						<span class="w170 tc db fl mb18 fs30 c4b8e05 fwb">再来一局</span>
+					</button>
+					<button type="button" class="bn on db h72 w170 tc mtb10 play_end" @click="closeSq">
+						<span class="w170 tc db fl mb18 fs30 c8e5605 fwb">返回</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</template>
+</body>
+<script>
+$.getScript('chess.min.js');
+$('#gameCanvas').attr('width',$('body').height()-20).attr('height',$('body').height()-20);//.width('480').height('480')
+window.takeBlack_now = 0;
+window.takeWhite_now = 0;
+window.action_ = null;
+var vmGameInfo = new Vue({
+	el : '#game_info_box',
+	data : {
+		resultInfo : '',
+		currentGame:{},
+		resFlag:false,
+		currentSize:Tool.queryString('currentSize')||'9',
+		gameId:'',
+		sttscFlag:'',
+		judgeFlag:false
+	},
+	methods:{
+		createChessboard() {
+			var $this = this;
+			$.ajax({
+				type: "POST",
+				url: http+"/consumerXSWQ/ChessController/createGame",
+				data : "size=" + $this.currentSize+"&token="+token+"&uid="+uid,
+				dataType: 'json',
+				success: function(data) {
+					console.log("ClearChessboard", data);
+					$this.gameId = data.data.chessid;
+					eve.f("HandlerSignInReq", uid)();
+					eve.f("HandlerEnterGame", $this.gameId)();
+					$this.sttscFlag = false;
+					document.location.href ="myschema://go?a=0";
+				},
+				error: function(XMLHttpRequest,data) {
+					document.location.href ="myschema://go?a=0";
+					layerTC("创建棋局失败~");
+				}
+			});
+		},
+		//发起数棋请求9路
+		handlerStatisticalReq9() {
+			
+			$.ajax({
+				type : "POST",
+				url : http+"/consumerXSWQ/GodController/getAN9Result",
+				data : $.param({chessId: vmGameInfo.gameId,token:token,uid:uid}),
+				dataType : 'json',
+				success : function(data) {
+					if (data.error.returnCode > 0) {
+						layerTC("请先选择落点~");
+					} else {
+						vmGameInfo.sttscFlag = true;
+						vmGameInfo.resultInfo = data.data;
+					}
+				},
+				error : function(XMLHttpRequest, data) {
+					document.location.href ="myschema://go?a=0"
+				}
+			});
+		},
+		judgement:function(){
+			var $this = this;
+			$this.sttscFlag = true;
+			eve.f('HandlerJudgement')();
+		},
+		socketStart() {
+			eve.f("SocketStart")();
+		}
+	},
+	mounted() {
+		this.socketStart();
+		this.createChessboard();
+	},
+	components:{
+ 		'statisticalResult':{
+ 			data:function(){
+ 				return {
+ 					aa:'',
+ 				}
+ 			},
+ 			props:['game'],
+ 			methods:{
+ 				closeSq(){
+ 					vmGameInfo.sttscFlag = false;
+ 					eve.f('HandlerJudgement')();
+ 				},
+ 				creatAgin(){
+ 					vmGameInfo.createChessboard();
+ 				}
+ 			},
+ 			mounted:function(){
+ 				//this
+ 				console.log(this)
+ 			},
+ 			template:'#statisticalResult'
+ 		},
+	 }
+});
+eve.on("SocketOpen", function () {
+    eve.f("HandlerReEnterGame")();
+    eve.f("HandlerSignInReq",uid)();
+    //
+});
+eve.on("AppOnEnter", function() {
+	eve.f("SocketStart")();
+});
+eve.on("SignInResponse", function() {
+	eve.f("HandlerEnterGame", vmGameInfo.gameId)();
+});
+eve.on("_JudgementResult_",function(blackSum,whiteSum){
+	var res = {};
+	res.blackSum = blackSum;
+	res.whiteSum = whiteSum;
+	if(blackSum>whiteSum){
+		res.resultInfo = ('黑领先'+(blackSum-whiteSum)+'目')
+	}else if(whiteSum>blackSum){
+		res.resultInfo = ('白领先'+(whiteSum-blackSum)+'目')
+	}else if(whiteSum==blackSum){
+		res.resultInfo = ('黑白目数相等')
+	}
+	vmGameInfo.resultInfo = res;
+});
+var takeBlack_now = 0;
+var takeWhite_now = 0;
+eve.on("_ShowTake_", function(takeBlack, takeWhite) {
+	document.getElementById("blacktake").innerText = takeWhite;
+	document.getElementById("whitetake").innerText = takeBlack;
+	if(takeBlack>takeBlack_now){//提子音
+		document.location.href = "myschema://go?a=8&music=ChipMany";
+		takeBlack_now = takeBlack;
+		return;
+	}
+	if(takeWhite>takeWhite_now){//提子音
+		document.location.href = "myschema://go?a=8&music=ChipMany";
+		takeWhite_now = takeWhite;
+		return;
+	}
+});
+//落子声音
+eve.on("HandlerAction", function(takeBlack, takeWhite) {
+	document.location.href = "myschema://go?a=8&music=STONE0";
+});
+eve.on("_ConfirmTouchEnded_", function(p1, p2) {
+ 	var gameId = GGame.get("game:id");
+	var blackUserid = GGame.get("game:"+gameId+":black");
+	var whiteUserid = GGame.get("game:"+gameId+":white");
+	var tryPlay = GGame.get("game:"+gameId+":TryPlay");
+	var steps = GGame.incrBy("game:" + gameId + ":steps", 0);
+	var traverseSteps = GGame.get("game:" + gameId + ":traverseSteps");
+	var first = GGame.incrBy("game:" + gameId + ":first", 0);
+	var role = GGame.get("game:"+gameId+":role");
+	if(tryPlay === 0){
+		if(blackUserid == uid && role != 4){
+			p2 = "B"+p2.substring(1,p2.length);
+		}else if(whiteUserid == uid && role != 4){
+			p2 = "W"+p2.substring(1,p2.length);
+		}
+		if(traverseSteps != undefined){
+			steps = traverseSteps;
+		}
+		if (steps % 2 === first) {
+			//当前状态走黑棋
+			if(p2.charAt(0) == "W"){
+				return;
+			}
+		}else{
+			if(p2.charAt(0) == "B"){
+				//("当前白棋落子")
+				return;
+			}
+		}
+	}
+  	eve.f("HandReply",p2)();
+  	action_ = p2; 
+});
+function confirmStep(){
+    if(action_==null){
+        layerTC("请选择落点");
+    }else{
+        var x = action_.substring(2,3).charCodeAt()-97;
+        var y = action_.substring(3,4).charCodeAt()-97;
+        var gameId = GGame.get("game:id");
+        var road = GGame.get("game:" + gameId + ":road");
+        if(x < 0 || x >= road.x || y < 0 || y >= road.x){
+            layerTC("请选择正确落点");
+            return;
+        }
+        eve.f("HandlerAction", action_)();
+        setTimeout(function(){
+           var TryPlay = GGame.get("game:"+gameId+":TryPlay");
+           var queue = GGame.get("game:"+gameId+":queue");
+           if(TryPlay == 1){
+        	   queue = GGame.get("game:"+gameId+":queueTraverse");
+           }
+           if(action_ == queue[queue.length-1]){
+         	  action_ = null;
+           }
+       },400);
+    }
+}
+</script>
+</html>

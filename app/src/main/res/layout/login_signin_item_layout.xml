@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/shape_login_signin_bg"
+        android:layout_width="@dimen/dp_116"
+        android:layout_height="@dimen/dp_153"
+        android:background="@drawable/shape_login_signin_bg" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_login_signin_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_login_signin_bg"
+        app:layout_constraintTop_toTopOf="@+id/shape_login_signin_bg" />
+
+
+    <ImageView
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_122"
+        android:background="@mipmap/shape_shopping_light"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_login_signin_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_login_signin_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_login_signin_bg"
+        app:layout_constraintTop_toTopOf="@+id/shape_login_signin_bg" />
+
+    <ImageView
+        android:id="@+id/shopping_iamge"
+        android:layout_width="@dimen/dp_69"
+        android:layout_height="@dimen/dp_69"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_login_signin_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_login_signin_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_login_signin_bg"
+        app:layout_constraintTop_toTopOf="@+id/shape_login_signin_bg" />
+
+    <TextView
+        android:id="@+id/text_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_login_signin_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/shape_login_signin_bg"
+        app:layout_constraintRight_toRightOf="@+id/shape_login_signin_bg" />
+</android.support.constraint.ConstraintLayout>

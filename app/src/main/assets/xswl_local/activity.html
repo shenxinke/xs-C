@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<link rel="stylesheet" type="text/css" href="css/custom/style.css">
+	<link rel="stylesheet" type="text/css" href="css/custom/guide.css"/>
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<script type="text/javascript" src="js/custom/common.js"></script>
+	<script type="text/javascript" src="js/lib/config.js"  charset="utf-8"></script>
+	<title>先手围棋智能教育服务平台 </title>
+</head>
+<body>
+	<div id='activity' class="df ai-c jc-c rel ha100">
+		<component :is="name" ref="child"></component>
+		
+		<div id="shade" class="abs tp0 lt0 dn z10 wa100 ha100 _rgba1"></div>
+		<div id="guide" class="_w1200 _h700 abs tp0 lt0 rt0 bt0 ma z100 dn">
+			<div id='finger' class='w80 h80 abs tr05 animated bounceInUp dn'>
+				<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+				<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+				<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 btn bg6ae3ff'></div>
+				<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/finger.png'>
+			</div>
+			<img class="abs w596 h144 tp450 lta53 guideTxt1 animated bounceInRight dn" src="img/guide/activity/actxt1.png" >
+			<img class="abs w687 h96 tp500 lta4 guideTxt2 animated bounceInLeft dn" src="img/guide/activity/actxt2.png" >
+			<img class="abs w552 h96 tp150 lta55 guideTxt3 animated bounceInRight dn" src="img/guide/activity/actxt3.png" >
+		</div>
+		
+	</div>
+	<template id="home">
+		<div class="df jc-sb ai-c _w1200 _bg_2 _h700 _pl30 _pr30  rel brBox">
+			<!-- <img src="img/play/play_back.png" class="abs tp0 _lt-60 w91 z10" alt=""> -->
+			<!-- <img  v-show="isShowSkip" src="img/publicImg/skip.png" class="abs tp0 _rt-60 w91 z10" alt=""> -->
+			<div class="_w630 _h645 _br01 _bgffffe6 rel _pl30 _pr30">
+				<div class="df jc-c ai-c _pt15">
+					<img class="_w56 _h58 mr10" src="img/activity/ac2.png" >
+					<span class="_ca8509f fs36 fwb _pt5 OwnedNum" v-text="'X'+ProductOwnedNum"></span>
+				</div>
+				
+				<div class="_wa100 _h80 _mt30 df ai-c jc-sb">
+					<div class="fs26 w320 ha100 df fw-w ac-sb">
+						<div class="wa100">
+							<p class="wa100">
+								<span class="_c1775a9 fwb">当前分数：</span><span class='_cff27b0' v-text="rankList.score"></span>
+							</p>
+							<p class="wa100">
+								<span class="_c1775a9 fwb">当前排名：</span><span class='_cff27b0' v-text="rankList.rank"></span>
+							</p>
+						</div>
+					</div>
+					<!-- <button type="button" @click="createActivityAIMatch(activityData,ProductOwnedNum)" class="btn-n _w190 _h72 _bg_4 fs26 _pb18 _c4c8e05 fwb _mt7">参加活动</button> -->
+					<button type="button" id="guide4" @click="getActivityScore" class="btn-n _w190 _h72 _bg_4 fs26 _pb12 _c4c8e05 fwb _mt7">参加活动</button>
+				</div>
+				<div id="guide2" class="wa100 _h365 _c1775a9 _mt20 _oya">
+					
+					<p class="fwb _mb10 fs26">参加方式及积分上限：<span class="_ca8509f">每日积分上限{{activityData.maxScore}}分</span></p>
+					<p class="fwb _mb10 fs26">活动时间：<span class="_ca8509f">{{activityData.beginTime | retain('yyyy-MM-dd')}} 至 {{activityData.endTime | retain('yyyy-MM-dd')}}</span></p>
+					<p class="fwb _mb10 fs26">活动规则：</p>
+					<p class="fs22 _lh30" v-text="activityData.ruleInstruction"></p>
+					<p class="fwb _mt20 _mb10 fs26">奖励：</p>
+					<!-- <p class="fs22 _lh30" v-text="activityData.awardInstruction"></p> -->
+					<div class="wa100 df ai-c fw-w jc-sb">
+						<div v-for="y in activityData.list" class="_w140 mt10">
+							<p class="tc _ca8509f">第{{y.rank}}名</p>
+							<div class="_w120 _h135 _bg_9 _br20 df ai-c jc-c rel">
+								<img style="width: 0.48rem;" :src="y.productImg" >
+								<p class="tc abs bt0 lt0 wa100 _c8e5605">×{{y.productNum}}</p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="guide3" class="_w480 _h645 _br02 bgffffe6 rel">
+				<div class="wa100 df jc-sa _pt90">
+					<div class="_w145 _h170 df jc-c fw-w _mt120" data-name='第二名'>
+						<div v-if="rankList.page.list[1]">
+							<div class="_w105 _h105 bgf rel df ai-c jc-c bra100 m0a">
+								<img class="wa100 abs bt0 lt0" src="img/activity/achg2.png" data-type = "头像框">
+								<img class="wa93 _ha93" style="border-radius: 100%;" :src="rankList.page.list[1].headImg" data-type = "头像">
+							</div>
+							<p class="fs26 _c1775a9 tc" v-text="rankList.page.list[1].userName">小天</p>
+							<p class="fs22 _c888882 tc" v-text="'分数:'+rankList.page.list[1].score+'分'">分数:111分</p>
+						</div>
+						<div v-else>
+							<div class="_w105 _h105 bgf rel df ai-c jc-c bra100">
+								<img class="wa100 abs bt0 lt0" src="img/activity/achg2.png" >
+								<img class="wa93 _ha93" style="border-radius: 100%;" src="img/headImg/19.png" >
+							</div>
+							<p class="fs26 _c1775a9 tc mt10" >空缺</p>
+						</div>
+					</div>
+					<div class="_w145 _h170 df jc-c fw-w" data-name='第一名'>
+						<div v-if="rankList.page.list[0]">
+							<div class="_w105 _h105 bgf rel df ai-c jc-c bra100 m0a">
+								<img class="wa100 abs bt0 lt0" src="img/activity/achg1.png" >
+								<img class="wa93 _ha93" style="border-radius: 100%;" :src="rankList.page.list[0].headImg" >
+							</div>
+							<p class="fs26 _c1775a9 tc" v-text="rankList.page.list[0].userName">小天</p>
+							<p class="fs22 _c888882 tc" v-text="'分数:'+rankList.page.list[0].score+'分'">分数:111分</p>
+						</div>
+						<div v-else>
+							<div class="_w105 _h105 bgf rel df ai-c jc-c bra100">
+								<img class="wa100 abs bt0 lt0" src="img/activity/achg1.png" >
+								<img class="wa93 _ha93" style="border-radius: 100%;" src="img/headImg/19.png" >
+							</div>
+							<p class="fs26 _c1775a9 tc mt10" >空缺</p>
+						</div>
+					</div>
+					<div class="_w145 _h170 df jc-c fw-w _mt120" data-name='第三名'>
+						<div v-if="rankList.page.list[2]">
+							<div class="_w105 _h105 bgf rel df ai-c jc-c bra100 m0a">
+								<img class="wa100 abs bt0 lt0" src="img/activity/achg3.png" >
+								<img class="wa93 _ha93" style="border-radius: 100%;" :src="rankList.page.list[2].headImg" >
+							</div>
+							<p class="fs26 _c1775a9 tc" v-text="rankList.page.list[2].userName">小天</p>
+							<p class="fs22 _c888882 tc" v-text="'分数:'+rankList.page.list[2].score+'分'">分数:111分</p>
+						</div>
+						<div v-else>
+							<div class="_w105 _h105 bgf rel df ai-c jc-c bra100">
+								<img class="wa100 abs bt0 lt0" src="img/activity/achg3.png" >
+								<img class="wa93 _ha93" style="border-radius: 100%;" src="img/headImg/19.png" >
+							</div>
+							<p class="fs26 _c1775a9 tc mt10" >空缺</p>
+						</div>
+					</div>
+				</div>
+				<div class="wa100 df ai-c jc-c _h250">
+					<button @click="tab" type="button" class="_bg_3 btn-n _pb15 _c8e5605 _w190 fs24 _h72 fwb">排行榜</button>
+				</div>
+			</div>
+			
+			<div id="_progress" class="_p80 _bg_6 ha100 _cbe631f _oya dn">
+				<div class="wa100 ha100 on df jc-c ai-c fw-w">
+					<p class="fs36 _c8d3c00 fwb">匹配中...</p>
+					<div class="_w508 _h38 _bor2 _br20 _bs1 _p4">
+						<div class="_w0 ha100 oh" id="_progressBox">
+							<div class="_w496 ha100 br20 _bgff9b05"></div>
+						</div>
+					</div>
+					<button type="button" class="btn-n _bg_7 _w225 _h60 _c4c8e05 fs26 fwb _pb15">取消</button>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="ranking">
+		<div class="df jc-sb ai-c _w1200 _h700 _pl30 _pr30 rel brBox">
+			<img @click="tab" src="img/play/play_back.png" class="abs tp0 _lt-20 w91 z10" alt="">
+			<img @click="layerHelp()" src="img/activity/acwh.png" class="abs tp0 _rt-20 w91 z10" alt="">
+			
+			<div class="wa100 _h640 abs bt0 lt0 df ai-c jc-c _bg_5">
+				<img class="ma abs rt0 lt0 _tp-75 _w548" src="img/activity/acphb.png" >
+				<div class="_w1150 _h590 _pl30 _pr30 _bgffffe6 _br165">
+					<div class="wa100 _h460 _mt30 _br100 bor1 oh">
+						<div class="wa100 _h75 _bgffd14c df ai-c jc-sa tc fs36 _cbe631f">
+							<span class="db _w300">排名</span>
+							<span class="db _w300">用户昵称</span>
+							<span class="db _w300">分数</span>
+						</div>
+						<ul class="wa100 _h460-75 tc _cbe631f _oya fs28">
+							<li v-for="(x,index) in arguments.rankList.page.list" class="df _h76 ai-c jc-sa _borb1">
+								<span class="db _w300" v-text="index+1">1</span>
+								<span class="db _w300" v-text="x.userName">小兰</span>
+								<span class="db _w300" v-text="x.score">666</span>
+							</li>
+							<li v-if="!arguments.rankList.page.list || arguments.rankList.page.list.length < 1">
+								<img src="img/qm.png" class="_w160 _mt7" alt="">
+								<p class="fs30">当前没有排名哦</p>
+							</li>
+						</ul>
+					</div>
+					<div v-for="(x,index) in arguments.rankList.page.list" v-if="x.userId==uid" class="_w950 _h72 _bgffd14c m0a _br140 mt15 df ai-c jc-sa tc fs28 _cbe631f">
+						<span class="db _w300" v-text="index+1">1</span>
+						<span class="db _w300" v-text="x.userName">小兰</span>
+						<span class="db _w300" v-text="x.score">666</span>
+					</div>
+				</div>
+			</div>
+			
+			<div id="_help" class="_p80 _bg_6 _w1092 _h690 _cbe631f _oya dn">
+				<div class="wa100 ha100 _oya">
+					<p class="fs36 fwb tc mb16">规则说明</p>
+					<p class="fs30 _lh50" v-text="arguments.activityData.ruleInstruction"></p>
+					<p class="fs36 fwb tc mb16 _mt20">奖励说明</p>
+					<p class="fs30 _lh50" v-text="arguments.activityData.awardInstruction"></p>
+				</div>
+				
+			</div>
+
+		</div>
+	</template>
+</body>
+<script>
+	
+	/*
+	 * Vue时间戳过滤器
+	 * {{1529564879000 | retain('yyyy-MM-dd hh:mm')}}
+	 * */
+	Vue.filter('retain',function(data,fmt){
+		date = new Date(data)
+		var o = {
+			"M+" : date.getMonth()+1,                 //月份   
+			"d+" : date.getDate(),                    //日   
+			"h+" : date.getHours(),                   //小时   
+			"m+" : date.getMinutes(),                 //分   
+			"s+" : date.getSeconds(),                 //秒   
+			"q+" : Math.floor((date.getMonth()+3)/3), //季度   
+			"S"  : date.getMilliseconds()             //毫秒   
+		  };   
+		  if(/(y+)/.test(fmt))   
+			fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));   
+		  for(var k in o)   
+			if(new RegExp("("+ k +")").test(fmt))   
+		  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+		  return fmt;
+	})
+	var activity = new Vue({
+		el:"#activity",
+		data:{
+			name:"home",
+			arguments:{
+				activityData:'',
+				rankList:{
+					page:{
+						list:[]
+					}
+				},//排行榜
+				OwnedNum:''
+			}
+		},
+		methods:{
+			addActivity:function(){
+				this.$refs.child.randomConsumerBattle(this.$refs.child.activityData,this.$refs.child.ProductOwnedNum);
+			}
+		},
+		watch:{
+			rankList:function(){
+				console.log(111)
+			}
+		},
+		mounted:function(){
+			if(location.hash){
+				//this.name = location.hash.replace('#','')
+			}
+			//引导 脚本
+			~function(){
+				if(jsonlink().guide!=1){
+					return false
+				}
+				//01 显示引导 和 遮罩
+				$('#guide').show(); 
+				$('#shade').show();
+				//02 规则栏 高亮
+				$('#guide2').addClass('guide2')
+			
+				$('#finger').show(); //显示手指
+				$('#finger').css({ //移动手指到指定位置
+					'top': "5.5rem",
+					"left": "45%",
+				})
+				//显示
+				$('.guideTxt1').show()
+				
+				var guideNum = 1;
+				$('#guide').click(function(){
+					switch (guideNum){
+						case 1:
+							$('#guide2').removeClass('guide2');
+							$('.guideTxt1').hide();
+							$('#guide3').addClass('guide3');
+							$('#finger').css({
+								'top': "4.9rem",
+								"left": "78%",
+							});
+							$('.guideTxt2').show();
+							guideNum ++;
+							break;
+						case 2:
+							$('#guide3').removeClass('guide3');
+							$('.guideTxt2').hide();
+							$('#guide4').addClass('guide4');
+							$('#finger').css({
+								'top': "1.3rem",
+								"left": "42%",
+							});
+							$('.guideTxt3').show();
+							guideNum ++;
+							break;
+						case 3:
+							$('#guide4').removeClass('guide4');
+							$('.guideTxt3').hide();
+							$('#guide').hide(); 
+							$('#shade').hide();
+							activity.addActivity()
+							break;
+					}
+				})  
+			}()
+			
+			
+			
+			
+		},
+		components:{
+			home:{
+				data:function(){
+					return {
+						activityData:'', //活动详情
+						ProductOwnedNum:0, //活动劵
+						rankList:{
+							page:{
+								list:[]
+							}
+						},//排行榜
+						uid:uid,
+						useProductNum:1 //参加一次活动扣的劵个数
+					}
+				},
+				methods:{
+					tab(){
+						activity.arguments.activityData = this.activityData;
+						activity.arguments.rankList = this.rankList;
+						document.location.href = 'myschema://go?a=6'  //活动页面隐藏返回按钮
+						activity.name = 'ranking';
+						location.hash = '#ranking'
+						console.log(location)
+					},
+					
+					getActivityScore(){
+						var $this = this;
+						//randomConsumerBattle(activityData,ProductOwnedNum)
+						$.ajax({
+							type:"post",
+							url:http+"/consumerXSWQ/ActivityController/getActivityScore",
+							data:{
+								token:token,
+								uid:uid,
+							},
+							success:function(data){
+								err(data.error,function(){
+									console.log('555',data)
+									if(data.data){
+										layerTC({
+											content:'今日积分获取已到上限，是否继续？',
+											skin:'layerTC',
+											shade:[0.000001,'#fff'],
+											closeBtn:0,
+										},function(){
+											$this.randomConsumerBattle($this.activityData,$this.ProductOwnedNum)
+										})
+									}else{
+										$this.randomConsumerBattle($this.activityData,$this.ProductOwnedNum)
+									}
+									
+									/* if(data.data){
+										$this.ProductOwnedNum = data.data
+									}else{
+										$this.ProductOwnedNum = 0
+									} */
+								})
+							}
+						});
+					},
+					getProductOwnedNum(){ //活动劵
+						var $this = this;
+						$.ajax({
+							type:"post",
+							url:http+"/consumerXSWQ/MallController/getProductOwnedNum",
+							data:{
+								token:token,
+								uid:uid,
+								productId:28 
+							},
+							success:function(data){
+								err(data.error,function(){
+									console.log('活动劵',data)
+									if(data.data){
+										$this.ProductOwnedNum = data.data
+									}else{
+										$this.ProductOwnedNum = 0
+									}
+								})
+							}
+						});
+					},
+					getActivityNow(callback){//活动详情
+						var $this = this;
+						$.ajax({
+							type:"post",
+							url:http+"/consumerXSWQ/ActivityController/getActivityNow",
+							data:{
+								token:token,
+								uid:uid
+							},
+							success:function(data){
+								err(data.error,function(){
+									console.log('活动详情',data)
+									if(data.data){
+										$this.activityData = data.data;
+										$this.getActivityRankList(data.data.id);//排行榜
+										//callback?callback():''
+									}
+								})
+							}
+						});
+					},
+					getActivityRankList(activityId){//排行榜
+						var $this = this;
+						$.ajax({
+							type:"post",
+							url:http+"/consumerXSWQ/ActivityController/getActivityRankList",
+							data:{
+								activityId :activityId,//活动 ID
+								pageSize:10000,
+								pageNum:1,
+								token:token,
+								uid:uid
+							},
+							success:function(data){
+								err(data.error,function(){
+									console.log('排行榜',data)
+									if(data.data){
+										$this.rankList = data.data;
+									}
+								})
+							}
+						});
+					},
+					/* 
+						1.randomConsumerBattle 匹配人 若返回操作成功 说明当前没有棋局可以匹配 否则提示当前未完成棋局
+						2.打开进度条 进度条走完 执行 getGameInfoByUserId 若返回对弈信息 说明匹配到人了直接进对弈，
+						否则 执行 createActivityAIMatch匹配AI
+					 */
+					
+					randomConsumerBattle(agr,ProductOwnedNum){ //匹配 人
+						var $this = this;
+						
+						//console.log($this.ProductOwnedNum)
+						
+						if(agr &&  ProductOwnedNum >= this.useProductNum){
+							$.ajax({
+								type:"post",
+								url:http+"/consumerXSWQ/ChessController/randomConsumerBattle",
+								data:{
+									road:agr.road,// 棋盘
+									rule:agr.rule,// 终局规则  
+									ruleNum:agr.ruleNum, //终局规则所涉及的数目
+									randomChess:agr.randomChess,//双方随机摆放棋子的数量
+									baseTime:agr.baseTime, //基础时间
+									countNum:agr.countNum, //读秒次数
+									stepTime:agr.stepTime, //读秒时长
+									token:token,
+									uid:uid
+								},
+								success:function(data){
+									err(data.error,function(){
+										console.log('randomConsumerBattle',data)
+										layerOpen({
+											content: '#_progress', //节点
+											area: ['7.39rem', '4.68rem'],
+											shade: [0.000001, '#000'],
+											closeBtn:0,
+											cancel: function() {
+												//alert('1')
+											}
+										})
+										//加载进度条
+										loadingChess(10,function(){
+											//进度条加载完成 查询是否匹配到人
+											$this.getGameInfoByUserId() //查询对弈信息
+										})
+										
+									})
+								}
+							});
+						}else{
+							layerTC({
+								content:'活动劵不足！',
+								skin:'layerTC',
+								shade:[0.000001,'#fff'],
+								closeBtn:0,
+							})
+						}
+					},
+					getGameInfoByUserId(){ //查棋局 是否存在  不存在匹配 AI
+						var $this = this;
+						
+							$.ajax({
+								type:"post",
+								url:http+"/consumerXSWQ/ChessController/getGameInfoByUserId",
+								data:{
+									token:token,
+									uid:uid
+								},
+								success:function(data){
+									layer.closeAll()
+									//匹配到人了 
+									if(data.error.returnCode==='0'){
+										$this.useProdu(28,1) //扣活动劵
+									}else if(data.error.returnCode==='1002'){ //没有匹配到人
+										$this.createActivityAIMatch($this.activityData,$this.ProductOwnedNum) //匹配ai
+									}else{
+										err(data.error,function(){})
+									}
+								}
+							});
+					},
+					createActivityAIMatch(agr,ProductOwnedNum){ //匹配 AI
+						var $this = this;
+						if(agr &&  ProductOwnedNum>0){
+							$.ajax({
+								type:"post",
+								url:http+"/consumerXSWQ/ChessController/createActivityAIMatch",
+								data:{
+									road:agr.road,// 棋盘
+									rule:agr.rule,// 终局规则  
+									ruleNum:agr.ruleNum, //终局规则所涉及的数目
+									randomChess:agr.randomChess,//双方随机摆放棋子的数量
+									baseTime:agr.baseTime, //基础时间
+									countNum:agr.countNum, //读秒次数
+									stepTime:agr.stepTime, //读秒时长
+									token:token,
+									uid:uid
+								},
+								success:function(data){
+									err(data.error,function(){
+										console.log('棋局创建成功')
+										$this.useProdu(28)
+									})
+								}
+							});
+						}else{
+							layerTC({
+								content:'活动劵不足！',
+								skin:'layerTC',
+								shade:[0.000001,'#fff'],
+								closeBtn:0,
+							})
+						}
+					},
+					useProdu:function (productId) { //扣除活动劵
+						var $this = this;
+						$.ajax({
+							type:"post",
+							url:http+"/consumerXSWQ/MallController/useProduct",
+							data:{
+								productId:productId,
+								productNum:$this.useProductNum,
+								token:token,
+								uid:uid
+							},
+							success:function(data){
+								err(data.error,function(){
+									/* var sum = $(".OwnedNum").text().substr(1);
+									$(".OwnedNum").text('X'+(parseInt(sum)-1));
+									console.log($(".OwnedNum").text()); */
+									$this.ProductOwnedNum --;
+									var json = JSON.stringify($this.activityData)
+									setCookie('activityData',json)
+									document.location.href = 'myschema://go?a=10'  //活动对弈
+								})
+							}
+						});
+					}
+				},
+				mounted() {
+					this.getActivityNow();//获取活动详情
+					this.getProductOwnedNum(); //活动劵
+					//加载完成
+					document.location.href = 'myschema://go?a=0'
+				},
+				template:'#home'
+			},
+			ranking:{
+				data:function(){
+					return {
+						arguments:{
+							activityData:'',
+							rankList:{
+								page:{
+									list:[]
+								}
+							}
+						},
+						uid:uid
+					}
+				},
+				methods:{
+					tab(){
+						document.location.href = 'myschema://go?a=9' //显示返回按钮
+						activity.name = 'home';	
+						location.hash = '#home'
+					},
+					layerHelp(){
+						layerOpen({
+							content: '#_help', //节点
+							area: ['10.92rem', '6.9rem'],
+							shade: [0.8, '#000'],
+							cancel: function() {
+							
+							}
+						})
+					}
+				},
+				mounted() {
+					this.arguments = activity.arguments
+				},
+				template:'#ranking'
+			}
+		}
+	})
+	
+	
+	function loadingChess(time,callback){
+		var timeNum = time*1000;
+		var num = timeNum/100;
+		var step = 100/num;
+		var index =1
+		var timer = setInterval(function() {
+			num --;
+			
+			if(num<=0){
+				clearInterval(timer);
+				callback?callback():'';
+				layer.closeAll();
+			}else{
+				index++;
+				$('#_progressBox').css('width',step*index+'%')
+			}
+		}, 100)
+		
+		$('#_progress button').one("click",function(){
+			clearInterval(timer)
+			layer.closeAll();
+		})
+		
+	}
+	
+</script>
+</html>

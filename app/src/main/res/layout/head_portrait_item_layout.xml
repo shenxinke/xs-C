@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="@dimen/dp_72" />
+
+    <ImageView
+        android:id="@+id/head_portrait_lock"
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="@dimen/dp_72"
+        android:background="@mipmap/head_portrait_lock"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/head_portrait_check"
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="@dimen/dp_72"
+        android:background="@mipmap/head_portrait_check"
+        android:visibility="gone"
+         />
+
+    <ImageView
+        android:id="@+id/head_portrait_confirm"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:visibility="gone"
+        android:background="@mipmap/head_portrait_confirm"
+        app:layout_constraintRight_toRightOf="@+id/head_portrait_check"
+        app:layout_constraintLeft_toRightOf="@+id/head_portrait_check"
+        app:layout_constraintTop_toTopOf="@+id/head_portrait_check" />
+
+
+</android.support.constraint.ConstraintLayout>

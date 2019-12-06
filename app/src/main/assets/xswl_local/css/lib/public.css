@@ -1,0 +1,519 @@
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-n {
+    border: 0;
+    outline: none;
+    background-color: transparent;
+}
+
+
+
+input,
+textarea {
+    outline: none;
+    border: none;
+}
+
+
+/**
+ * 常用宽度
+ */
+.wa10 {
+    width: 10%;
+}
+.wa20 {
+    width: 20%;
+}
+.wa30 {
+    width: 30%;
+}
+.wa40 {
+    width: 40%;
+}
+.wa50 {
+    width: 50%;
+}
+.wa60{
+	width: 60%;
+}
+.wa70{
+	width: 70%;
+}
+.wa80 {
+    width: 80%;
+}
+.wa90 {
+    width: 90%;
+}
+
+.wa100 {
+    width: 100% !important;
+}
+
+
+/**
+ * 常用高度
+ */
+
+.ha100 {
+    height: 100% !important;
+}
+
+
+
+/**
+ * 常用margin
+ */
+
+.ma {
+    margin: auto;
+}
+
+.m0a {
+    margin: 0 auto;
+}
+
+.mt0 {
+    margin-top: 0
+}
+
+.mr0 {
+    margin-right: 0
+}
+
+.mb0 {
+    margin-bottom: 0
+}
+
+.ml0 {
+    margin-left: 0
+}
+
+
+
+
+
+/*字体加粗*/
+
+.fwn {
+    font-weight: normal !important;
+}
+
+.fwb {
+    font-weight: bold !important;
+}
+
+
+
+/*
+ *常用文字颜色
+ */
+
+.cf {
+    color: #fff;
+}
+
+.cc {
+    color: #ccc;
+}
+
+.c0 {
+    color: #000;
+}
+
+
+
+/**
+ * 常用背景颜色
+ */
+
+.bgf {
+    background-color: #fff;
+}
+
+.bg0 {
+    background-color: #000;
+}
+
+.bgred {
+    background-color: red;
+}
+
+
+/**
+ * 文字对齐
+ */
+
+.tl {
+    text-align: left;
+}
+
+.tc {
+    text-align: center
+}
+
+.tr {
+    text-align: right;
+}
+
+
+
+
+
+/**
+ * position 定位方式
+ */
+
+.rel {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+
+.fix {
+    position: fixed;
+}
+
+
+.tp0 {
+    top: 0;
+}
+
+.bt0 {
+    bottom: 0;
+}
+
+.lt0 {
+    left: 0;
+}
+
+.rt0 {
+    right: 0;
+}
+
+
+/**
+ *overflow 超出显示方式
+ */
+
+.oh {
+    overflow: hidden;
+}
+
+.oa {
+    overflow: auto;
+}
+
+.oi {
+    overflow: initial !important;
+}
+
+
+/**
+ *  浮动
+ *  cl:通过添加伪类清除浮动;
+ */
+
+.cl:after {
+    content: '';
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+
+
+/**
+ *display
+ */
+
+.dn {
+    display: none;
+}
+
+.di {
+    display: inline;
+}
+
+.dib {
+    display: inline-block;
+}
+
+.db {
+    display: block;
+}
+.dt {
+    display: table;
+}
+
+.df {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+
+/**
+ * align-items 文字垂直对齐方式
+ * ai-fs:上对齐;
+ * ai-c：居中对齐;
+ * ai-fe：下对齐;
+ */
+
+.ai-fs {
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+
+.ai-c {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.ai-fe {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+
+
+
+/**
+ * align-content 元素垂直对齐方式
+ * ac-fs:上对齐;
+ * ac-c：居中对齐;
+ * ac-fe：下对齐;
+ * ac-sb：上下分散;
+ * ac-sa:居中分散;
+ */
+
+.ac-fs {
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+
+.ac-c {
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+
+.ac-fe {
+    -webkit-align-content: flex-end;
+    -ms-flex-line-pack: end;
+    align-content: flex-end;
+}
+
+.ac-sb {
+    -webkit-align-content: space-between;
+    -ms-flex-line-pack: justify;
+    align-content: space-between;
+}
+
+.ac-sa {
+    -webkit-align-content: space-around;
+    -ms-flex-line-pack: distribute;
+    align-content: space-around;
+}
+
+
+/**
+ * justify-content 横向对齐方式
+ * jc-fs:左对齐;
+ * jc-c：居中对齐;
+ * jc-fe：右对齐;
+ * jc-sb：左右分散;
+ * jc-sa:居中分散;
+ */
+
+.jc-fs {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.jc-c {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.jc-fe {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.jc-sb {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.jc-sa {
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+
+
+
+/**
+ * flex-wrap 规定flex容器是单行或者多行
+ * fw-n： 单行
+ * fw-w： 多行;
+ */
+
+.fw-n {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.fw-w {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+
+.op0 {
+    opacity: 0;
+}
+
+
+/**
+ * 清除border
+ */
+
+.bn {
+    border: none;
+}
+
+.on {
+    outline: none;
+}
+
+/*圆*/
+.bra100{
+	border-radius: 100%;
+}
+
+
+
+/**
+ * 鼠标
+ */
+
+.cp {
+    cursor: pointer;
+}
+
+
+.z10 {
+    z-index: 10
+}
+
+
+/* 
+	文字超出隐藏
+ */
+ 
+ .th{
+ 	overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+ }
+
+.vam{
+	vertical-align:middle
+}
+
+.rt69{
+	right:0.69rem
+}
+canvas{
+	outline: none;
+}

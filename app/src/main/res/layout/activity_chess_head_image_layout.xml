@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/personal_cente_bg">
+
+    <ImageView
+        android:id="@+id/green_back"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_14"
+        android:src="@mipmap/green_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/chess_head_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_36"
+        android:layout_marginRight="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@mipmap/forget_password_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/achievement_select"
+        android:layout_width="@dimen/dp_97"
+        android:layout_height="@dimen/dp_31"
+        android:layout_marginLeft="@dimen/dp_100"
+        android:layout_marginTop="@dimen/dp_11"
+        android:background="@mipmap/achievement_select"
+        android:text="头像"
+        android:textColor="@color/color_274701"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/chess_head_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/achievement_no_select"
+        android:layout_width="@dimen/dp_97"
+        android:layout_height="@dimen/dp_31"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:background="@mipmap/achievement_no_select"
+        android:text="头像框"
+        android:textColor="@color/color_274701"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/achievement_select"
+        app:layout_constraintTop_toTopOf="@+id/achievement_select" />
+
+
+    <com.xswq.consumer.view.MyViewPager
+        android:id="@+id/check_head_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_45"
+        android:layout_marginLeft="@dimen/dp_80"
+        android:layout_marginRight="@dimen/dp_70"
+        android:layout_marginTop="@dimen/dp_60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

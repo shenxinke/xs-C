@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/story_main_bg">
+
+    <ImageView
+        android:id="@+id/story_flower_vine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_9"
+        android:layout_marginRight="@dimen/dp_9"
+        android:layout_marginTop="@dimen/dp_34"
+        android:background="@mipmap/story_flower_vine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/green_back"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_27"
+        android:layout_marginTop="@dimen/dp_18"
+        android:src="@mipmap/green_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/story_windmill_image"
+        android:layout_width="@dimen/dp_73"
+        android:layout_height="@dimen/dp_73"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@mipmap/story_error_question"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_one"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_one"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_one"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_one"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_one"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_vine"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_two"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_vine" />
+
+    <TextView
+        android:layout_width="@dimen/dp_37"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_one"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_one"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_one"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_one" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_two"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_two"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_two"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_two"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_two"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_two"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_19"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_one"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_three" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_two"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_two"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_two"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_two" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_three"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_three"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_three"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_three"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_three"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_three"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_7"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_two"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_four" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_three"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_three"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_three"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_three" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_four"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_four"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_four"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_four"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_four"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_four"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_30"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_three"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_vine" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_four"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_four"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_four"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_four" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_five"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_five"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_five"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_five"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_five"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_five"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginLeft="@dimen/dp_88"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_vine"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_six"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_one" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_five"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_five"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_five"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_five" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_six"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_six"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_six"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_six"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_six"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_six"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_3"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_five"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_five"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_seven" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_six"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_six"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_six"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_six" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_seven"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_seven"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_seven"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_seven"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_seven"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_seven"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_25"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_six"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_eight"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_five" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_seven"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_seven"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_seven"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_seven" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_eight"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_eight"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_eight"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_eight"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_eight"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_eight"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_seven"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_vine"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_five" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_eight"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_eight"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_eight"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_eight" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_nine"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_nine"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_nine"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_nine"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_nine"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_nine"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_vine"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_ten"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_five" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_nine"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_nine"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_nine"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_nine" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_ten"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_ten"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_ten"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_ten"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_ten"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_ten"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_nine"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_eleven"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_nine" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_ten"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_ten"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_ten"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_ten" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_eleven"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_eleven"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_eleven"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_eleven"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_eleven"
+        app:lottie_autoPlay="true" />
+
+    <ImageView
+        android:id="@+id/story_flower_eleven"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_7"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_nine"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_ten"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_twelve" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_eleven"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_eleven"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_eleven"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_eleven" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_twelve"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_twelve"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_twelve"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_twelve"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_twelve"
+        app:lottie_autoPlay="true" />
+
+
+    <ImageView
+        android:id="@+id/story_flower_twelve"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginRight="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_22"
+        android:background="@mipmap/story_flower_bud"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_eleven"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_vine"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_nine" />
+
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_15"
+        android:background="@mipmap/story_text_twelve"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_twelve"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_twelve"
+        app:layout_constraintTop_toBottomOf="@+id/story_flower_twelve" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_86"
+        android:background="@mipmap/story_first_season"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/story_score"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_65"
+        android:background="@mipmap/story_scorescore"
+        android:paddingTop="@dimen/dp_35"
+        android:textColor="@color/color_682f2d"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintRight_toLeftOf="@+id/story_windmill_image"
+        app:layout_constraintTop_toTopOf="@+id/story_windmill_image" />
+
+    <Button
+        android:id="@+id/story_score2"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_65"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/story_scorescore"
+        android:paddingTop="@dimen/dp_35"
+        android:textColor="@color/color_682f2d"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_eight"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_eight" />
+
+    <Button
+        android:id="@+id/story_score3"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_65"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/story_scorescore"
+        android:paddingTop="@dimen/dp_35"
+        android:textColor="@color/color_682f2d"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_twelve"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_twelve" />
+</android.support.constraint.ConstraintLayout>

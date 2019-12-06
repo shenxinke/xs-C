@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type="text/javascript" src='js/lib/lottie_svg.min.js'></script>
+	<script type="text/javascript" src="js/custom/common.js"></script>
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<script type="text/javascript" src="js/lib/config.js"  charset="utf-8"></script>
+	<title>先手围棋智能教育服务平台 </title>
+</head>
+<body id="play">
+	<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+	<audio src="music/START.wav" type="hidden" id="startmusic"></audio>
+	<audio src="music/ChipMany.wav" type="hidden" id="takemusic"></audio>
+	<audio src="music/CELEBRATE.wav" type="hidden" id="winmusic"></audio>
+	<audio src="music/COMFORT.wav" type="hidden" id="losemusic"></audio>
+	<audio src="music/COUNTDOWN.wav" type="hidden" id="countdownmusic"></audio>
+	<audio src="music/10.wav" type="hidden" id="second10music" class="second"></audio>
+	<audio src="music/9.wav" type="hidden" id="second9music" class="second"></audio>
+	<audio src="music/8.wav" type="hidden" id="second8music" class="second"></audio>
+	<audio src="music/7.wav" type="hidden" id="second7music" class="second"></audio>
+	<audio src="music/6.wav" type="hidden" id="second6music" class="second"></audio>
+	<audio src="music/5.wav" type="hidden" id="second5music" class="second"></audio>
+	<audio src="music/4.wav" type="hidden" id="second4music" class="second"></audio>
+	<audio src="music/3.wav" type="hidden" id="second3music" class="second"></audio>
+	<audio src="music/2.wav" type="hidden" id="second2music" class="second"></audio>
+	<audio src="music/1.wav" type="hidden" id="second1music" class="second"></audio>
+	<audio src="music/1.wav" type="hidden" id="lottieMusic" class=""></audio>
+	<div class="df ai-c jc-c rel h750" id='game_info_box'>
+		<div class="df ai-c jc-c w1150 bg_activityPlay_main ha100 pr20 mr-70 rel">
+			<!-- 退出房间 -->
+			<!-- <img src="img/play/play_back.png" class="abs tp40 lt-110 w91 z10" @click="quitGame()" alt=""> -->
+			<div id="canvas_wrapper" class="h750 w750 rel">
+				<div id="lottie" class="abs h715 w700 lt0 rt0 tp0 dn z101"></div>
+				<canvas id="gameCanvas" class="abs tp18 rt18" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()'></canvas>
+			</div>
+			<div id="game_chat_wrapper" class="w380 h715 bg_activityPlayRt df ai-c jc-c">
+				<div class="bg_playRt_main h685 w360">
+					<div class='wa100 h20 fs20 c0059c6 df ai-c jc-c cf tzinfo mt25 mb16 fwn letspc3'></div>
+					<!-- 棋局信息 -->
+					<div id="game_info_wrapper" class="df ai-c jc-c">
+						<div class="rel w150" :data-uid='game.whiteUserId' id="user_1_avater">
+							<img :src="game.whiteHeadImg || 'img/play/play_back.png'" class="w100 db m0a">
+							<p class="w50 h50 br50 fs20 df ai-c jc-c bgc1bbbb c0 abs bt-12 rt26">{{ game.whiteLevel || '25K' }}</p>
+						</div>
+						<img class='w71 h50' alt="" src="img/play/vs.png">
+						<div class="rel w150" :data-uid='game.blackUserId' id="user_2_avater">
+							<img :src="game.blackHeadImg || 'img/play/play_back.png'" class="w100 db m0a">
+							<p class="w50 h50 br50 fs20 df ai-c jc-c bg0 cf abs bt-12 lt26">{{ game.blackLevel || '25K' }}</p>
+						</div>
+					</div> 
+					<!-- 对弈名字 -->
+					<div class='df jc-sb tc mt20'>
+						<span class='db tc w150 fs20 c666'>{{ game.whiteUserNm || 'username'}}</span>
+						<span class='db tc w150 fs20 c666'>{{ game.blackUserNm || 'username'}}</span>
+					</div>
+					<!-- 倒计时 -->
+					<div class='df jc-sb tc'>
+						<a class="time db w150 tc fwb fs20 cf9052f" id="whitetime">00:00:00</a>
+						<a class="time db w150 tc fwb cf9052f fs20" id="blacktime">00:00:00</a>
+					</div>
+					<!-- 读秒  -->
+					<div class='df jc-sb tc mb10 h30 bgfbe4ba br10 w310 mtb12'>
+						<span class="read-time db w150 tc  mb10">
+							<b class='fwn c666 fs20' id="white_Seconds">30秒</b>
+						</span>
+						<p class='fs20 w100 h30 bgffb424 br20 lineh30'>
+							<span class='br20 cf'>读秒</span>
+						</p>
+						<span class="read-time db w150 tc mb10">
+							<b class='fwn c666 fs20' id="black_Seconds">30秒</b>
+						</span>
+					</div>
+					<!-- 次数  -->
+					<div class='df jc-sb tc mb10 h30 bgfbe4ba br10 w310 mtb12'>
+						<span class="counts db w150 tc mb10">
+							<b class='fwn c666 fs20' id="white_counts">3</b>
+						</span>
+						<p class='fs20 w100 h30 bgff9419 br20 lineh30'>
+							<span class='br20 cf'>次数</span>
+						</p>
+						<span class="counts db w150 tc mb10">
+							<b class='fwn c666 fs20' id="black_counts">3</b>
+						</span>
+					</div>
+					<!-- 提子  -->
+					<div class='df jc-sb tc mb10 h30 bgfbe4ba br10 w310 mtb12'>
+						<span class="take-stone db w150 tc ">
+							<b class='fwn c666 fs20' id="whitetake" :data-kake="game.whiteUserId">0</b>
+						</span>
+						<p class='fs20 w100 h30 bgff7200 br20 lineh30'>
+							<span class='br20 cf'>提子</span>
+						</p>
+						<span class="take-stone db w150 tc ">
+							<b class='fwn c666 fs20' id="blacktake" :data-kake="game.blackUserId">0</b>
+						</span>
+					</div>
+					<!-- 操作按钮 -->
+					<div class="mt25">
+						<button type="button" class="bn on confirmStep db h60 w220 tc mtb10" onclick="confirmStep()">
+							<span class="mb16 w220 tc db fl fs30 cba2d38 fwb">确认落子</span>
+						</button>
+						<button type="button" class="bn on play_chessNm_btn db h60 w220 tc mtb10" v-if="game.RuleType2==1" @click="handlerStatisticalReq19()">
+							<span class="mb16 w220 tc db fl fs30 c4b8e05 fwb">数棋</span>
+						</button>
+						<button type="button" class="bn on play_chessNm_btn db h60 w220 tc mtb10 rel" v-else @click="handlerStatisticalReq9()">
+							<span class="mb16 w220 tc db fl fs30 c4b8e05 fwb">数棋</span>
+						</button>
+						<button type="button" class="bn on play_Undo_btn db h60 w220 tc mtb10" @click="handlerRequestUndo()">
+							<span class="mb16 w220 tc db fl fs30 c8e5605 fwb">悔棋</span>
+						</button>
+						<button type="button" class="bn on play_Defeat_btn db h60 w220 tc mtb10" @click="handleAskForAdmitDefeat()">
+							<span class="mb16 w220 tc db fl fs30 cf fwb">认输</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<chess-result v-if="resFlag" :chess="chess" ></chess-result>
+		<statistical-result v-if="sttscFlag" :game="game"></statistical-result>
+	</div>
+	<template id='chessResult'>
+		<div class="abs bg05 wa100 ha100 z100 df ai-c jc-c">
+			<div :class="['w730 h660 df ac-fs jc-c fw-w rel',[chess.chessRes]]">
+				<div class="mt280 bgf w430 h100 br50r df ai-c jc-sb fw-n rel lt16">
+					<div class="letspc3 fs30 c8e5605 w430 abs bt120 tc fwb" v-text="chess.msg"></div>
+					<img :src="chess.gameInfo.blackHeadImg" class="w71 br50 ml20">
+					<span class="c8e5605 fs20 mr120" v-text="chess.gameInfo.blackUserNm"></span>
+					<span class="w71 h30 br10 bg68acff fs20 cf df ai-c jc-c mr30">{{chess.closeInfo.level|leve}}</span>
+				</div>
+				<!-- <div class="w380 df ai-c jc-c fw-n mt50 rel lt16" v-if="chess.closeInfo.addGold*1==0">
+					<img src="img/play/water.png" class="h50">
+					<span class="c8e5605 fs30 mr10 ml10">+5</span>
+				</div> --> 
+				<div class="wa100 df ai-c jc-c fw-n abs bt40 lt10">
+					<button type="button" class="bn on db h72 w184 tc mtb10 play_end" @click="vmGameNone">
+						<span class="w184 tc db fl mb18 fs30 c8e5605 fwn">返回</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id='statisticalResult'>
+		<div class="abs bg05 wa100 ha100 z100 df ai-c jc-c">
+			<div class="h472 w740 activity_sq_main df ac-fs jc-c fw-w">
+				<div class="mt50 fs30 c7e2c00 tc fwb wa100">是否同意发送数棋结果?</div>
+				<div class="df ai-c jc-sa wa80 mt20">
+					<div class="w150">
+						<span class='db tc w150 fs20 c666 c7e2c00'>{{game.whiteUserNm || 'username'}}</span>
+						<div class="rel mt10">
+							<img :src="game.whiteHeadImg||'img/headImg/1.png'" class="w100 db m0a">
+							<p class="w50 h50 br50 fs20 df ai-c jc-c bgc1bbbb c0 abs bt-12 rt26">
+								<img src="img/play/hand_bai.png" class="h40">
+							</p>
+						</div>
+						
+						<span class='db tc w150 fs30 c666 mt10 c7e2c00 fwn'>{{game.whiteLevel || '25K'}}</span>
+					</div>
+					<div class="fs20 c7e2c00" v-text="game.text"></div>
+					<div class="w150">
+						<span class='db tc w150 fs20 c666 c7e2c00'>{{  game.blackUserNm ||'username'}}</span>
+						<div class="rel mt10">
+							<img :src=" game.blackHeadImg ||'img/headImg/1.png'" class="w100 db m0a">
+							<p class="w50 h50 br50 fs20 df ai-c jc-c bg0 cf abs bt-12 lt26">
+								<img src="img/play/hand_hei.png" class="h40">
+							</p>
+						</div>
+						<span class='db tc w150 fs30 c666 mt10 c7e2c00 fwn'>{{ game.blackLevel || '25K'}}</span>
+					</div>
+				</div> 
+				<div class="wa100 tc fs30 c7e2c00 fwb" v-text="game.resultInfo"></div>
+				<div class="mt10 wa70 df ai-c jc-sa">
+					<button type="button" class="bn on db h72 w170 tc mtb10 play_agin" @click="sendSq">
+						<img src="img/play/dui.png" class="fl ml66 h30 db mb16">
+					</button>
+					<button type="button" class="bn on db h72 w170 tc mtb10 play_end" @click="closeSq">
+						<img src="img/play/cuo.png" class="fl ml66 h30 db mb16">
+					</button>
+				</div>
+			</div>
+		</div>
+	</template>
+</body>
+<script type="text/javascript" src="js/custom/activityPlay.js"></script>
+<script>
+$.getScript('chess.min.js');
+$('#gameCanvas').attr('width',$('#game_chat_wrapper').height()).attr('height',$('#game_chat_wrapper').height());//.width('480').height('480')
+</script>
+</html>

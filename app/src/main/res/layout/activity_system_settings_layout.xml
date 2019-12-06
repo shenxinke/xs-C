@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <ImageView
+        android:id="@+id/settings_bg"
+        android:layout_width="@dimen/dp_355"
+        android:layout_height="@dimen/dp_260"
+        android:background="@mipmap/settings_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/system_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="系统设置"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/settings_item_bg_1"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_bg"
+        app:layout_constraintRight_toRightOf="@+id/settings_bg"
+        app:layout_constraintTop_toTopOf="@+id/settings_bg" />
+
+    <ImageView
+        android:id="@+id/settings_item_bg_1"
+        android:layout_width="@dimen/dp_229"
+        android:layout_height="@dimen/dp_42"
+        android:background="@mipmap/settings_item_bg"
+        app:layout_constraintBottom_toTopOf="@+id/settings_item_bg_2"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_bg"
+        app:layout_constraintRight_toRightOf="@+id/settings_bg"
+        app:layout_constraintTop_toBottomOf="@+id/system_settings" />
+
+    <ImageView
+        android:id="@+id/settings_item_music"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:background="@mipmap/settings_item_musictoneicon"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_bg_1"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_item_bg_1"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_bg_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:text="背景音乐"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_music"
+        app:layout_constraintLeft_toRightOf="@+id/settings_item_music"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_music" />
+
+    <ImageView
+        android:id="@+id/settings_item_check1"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@mipmap/settings_item_check"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_bg_1"
+        app:layout_constraintRight_toRightOf="@+id/settings_item_bg_1"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_bg_1" />
+
+    <ImageView
+        android:id="@+id/settings_item_bg_2"
+        android:layout_width="@dimen/dp_229"
+        android:layout_height="@dimen/dp_42"
+        android:background="@mipmap/settings_item_bg"
+        app:layout_constraintBottom_toTopOf="@+id/settings_item_bg_3"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_bg"
+        app:layout_constraintRight_toRightOf="@+id/settings_bg"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_bg_1" />
+
+
+    <ImageView
+        android:id="@+id/settings_item_speakericon"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:background="@mipmap/settings_item_speakericon"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_bg_2"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_item_bg_2"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_bg_2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:text="音效"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_speakericon"
+        app:layout_constraintLeft_toRightOf="@+id/settings_item_speakericon"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_speakericon" />
+
+    <ImageView
+        android:id="@+id/settings_item_check2"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@mipmap/settings_item_check"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_bg_2"
+        app:layout_constraintRight_toRightOf="@+id/settings_item_bg_2"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_bg_2" />
+
+    <ImageView
+        android:id="@+id/settings_item_bg_3"
+        android:layout_width="@dimen/dp_229"
+        android:layout_height="@dimen/dp_42"
+        android:background="@mipmap/settings_item_bg"
+        app:layout_constraintBottom_toTopOf="@+id/btn_setup_system"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_bg"
+        app:layout_constraintRight_toRightOf="@+id/settings_bg"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_bg_2" />
+
+    <ImageView
+        android:id="@+id/settings_item_cupicon"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:background="@mipmap/settings_item_cupicon"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_bg_3"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_item_bg_3"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_bg_3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:text="特效显示"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_cupicon"
+        app:layout_constraintLeft_toRightOf="@+id/settings_item_cupicon"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_cupicon" />
+
+    <ImageView
+        android:id="@+id/settings_item_check3"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@mipmap/settings_item_check"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_item_bg_3"
+        app:layout_constraintRight_toRightOf="@+id/settings_item_bg_3"
+        app:layout_constraintTop_toTopOf="@+id/settings_item_bg_3" />
+
+    <Button
+        android:id="@+id/btn_setup_system"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:background="@mipmap/btn_setup_system"
+        android:text="保存"
+        android:textColor="@color/color_4b8e05"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:paddingBottom="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/settings_bg"
+        app:layout_constraintRight_toRightOf="@+id/settings_bg"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_bg_3" />
+
+    <ImageView
+        android:id="@+id/set_up_shut_down"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:background="@mipmap/set_up_shut_down"
+        app:layout_constraintRight_toRightOf="@+id/settings_bg"
+        app:layout_constraintTop_toTopOf="@+id/settings_bg" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom/guide.css"/>
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<link rel="stylesheet" type="text/css" href="css/custom/style.css">
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type="text/javascript" src="js/custom/common.js"></script>
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<script type="text/javascript" src="js/lib/config.js"  charset="utf-8"></script>
+	<title>先手围棋智能教育服务平台 </title>
+</head>
+<body id="play">
+	<div class="df ai-c jc-c  rel ha100">
+		<div class="df _w1092 bga0efff ha100 rel brBox" id='exercises'>
+			<!-- <button @click="refresh(10)" v-show="isShow" class="_w90 _h90 btn-n _bg_8 abs _rt-100 _tp7"></button> -->
+			<!-- <button class="fix tp0 lt0" @click="pretendRight">假装答对</button> -->
+			<div v-text="description" class='_w55 wmtr df jc-c fs32 fwb _c0b5136'>
+				请选出不是三线四线的棋子。
+			</div>
+			<div id="canvas_wrapper" class="h750 w750 rel">
+				<canvas id="gameCanvas" class="abs _tp18 _lt18" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()'></canvas>
+			</div>
+			<div class='_w268 ha100 _pt18 _pb18'>
+				<div class='wa100 ha100 bge_1 df ai-c jc-c'>
+					<div class='_w238 _h680 bgffffe6 brBox2 df jc-c _pt18 _pb18 rel'>
+						<ul v-if='questionList.length>0' class="_w160 _h580 _oya ulBox">
+							<li v-for="(x,index) in questionList" :data-id='x.QuesionID || x.id' :data-index='index' @click="loadMyJob(x.QuesionID||x.id)" class="_w160 _h160 rel imgBox">
+								<img class="wa100 ha100" :src="x.Snapshot||x.snapshot" alt="" />
+							</li>
+						</ul>
+						<div v-else class="wa100 ha100 df ac-c jc-c fw-w">
+							<img class="w160 _h386 _mb10" src="img/qm.png" >
+							<p>
+								暂无相关数据
+							</p>
+						</div>
+						
+						
+						<div  class='btmBox _w180 df ai-c jc-c abs bt0 _lt25'>
+							<button type="button" @click="confirmStep()" class="bn on df jc-c ac-c confirmStep db h60 w220 tc mtb10">
+								<span class="fs30 pb5 cba2d38 fwn">确认落子</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="shade" class="abs tp0 lt0 z10 wa100 ha100 dn _rgba1"></div>
+		<div id="guide" class="_w1200 _h700 abs tp0 lt0 rt0 bt0 ma z100 dn">
+			<div id='finger' class='w80 h80 abs tr05 animated bounceInUp dn'>
+				<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple' ></div>
+				<div class='wa100 ha100 bra100 ma abs tp0 lt0 bt0 rt0 bg6ae3ff-8 ripple2' ></div>
+				<div class='w30 h30 bra100 ma abs tp0 lt0 bt0 rt0 btn bg6ae3ff'></div>
+				<img class='w90 h80 abs tp30 rt-45 finger' src ='img/guide/finger.png'>
+			</div>
+			<img class="abs w309 h144 tp450 lta75 guideTxt1 animated bounceInRight dn" src="img/guide/wrongQuestion/wqtxt1.png" >
+		</div>
+	</div>
+	<audio src="music/STONE0.wav" type="hidden" id="stepmusic"></audio>
+	<audio src="music/aswError.mp3" type="hidden" id="aswError"></audio>
+	<audio src="music/aswRight.mp3" type="hidden" id="aswRight"></audio>
+</body>
+<script>
+$.getScript('chess.min.js');
+$('#gameCanvas').attr('width',$('.bge_1').height()).attr('height',$('.bge_1').height());//.width('480').height('480')
+	
+	
+	var sgfState = 0;
+	var exercises = new Vue({
+		el:'#exercises',
+		data:{
+			msg:{},//所有关卡数据
+			questionList:{}, //当前关卡习题数据
+			description:'',
+			target: 1,
+			geteNum:jsonlink().geteNum||1,//需要传进来当前关卡
+			MusicFlag:1,//音频播放初始化点击全部播放一次 接下来就可以随意播放
+			isShow:0,
+		},
+		methods:{
+			selectErrorQuestion:function(){
+				var $this = this;
+				$.ajax({
+					type:"post",
+					url:http+"/consumerXSWQ/QuestionController/selectErrorQuestion",
+					data:{
+						pageNum:1,
+						pageSize:1000,
+						token:token,
+						uid:uid
+					},
+					success:function(data){
+						err(data.error,function(){
+							if(data.data.list && data.data.list[0]){
+								$this.questionList = data.data.list;
+								//加载当前题
+								$this.loadMyJob($this.questionList[0].QuesionID);
+								this.isShow = 0
+							}else{
+								//$this.searchQuestions();
+							}
+						})
+					}
+				});
+			},
+			loadMyJob: function(questionId) {
+				var $this = this;			
+				$.ajax({
+					type: "POST",
+					url: http + "/consumerXSWQ/QuestionController/loadQuestion",
+					data: "questionid=" + questionId + "&token=" + token + "&uid=" + uid,
+					dataType: 'json',
+					success: function(data) {
+						err(data.error,function(){
+							console.log("棋盘信息", data);
+							window.currentGameId = data.data.chessid;
+							window.quesionID = questionId;
+							
+							$('.imgBox').removeClass('active')
+							$('.imgBox[data-id=' + window.quesionID + ']').addClass('active');
+							
+							var h = $('.active').height();
+							var index = $('.active').attr('data-index');
+							//自动滚动当前习题到最佳位置
+							$('.ulBox').scrollTop(h*index)
+							sgfState = data.data.questionbank.sgfstate;
+							eve.f("HandlerSignInReq", uid)();
+							setTimeout(function() {
+								eve.f("HandlerHideStep")();
+							}, 100);
+							
+							$this.description = data.data.questionbank.titlerequs===null||
+							data.data.questionbank.titlerequs===''?
+									data.data.questionbank.description.split('_')[0]:
+									data.data.questionbank.titlerequs
+						})
+					},
+					error: function(XMLHttpRequest, data) {
+						alert("获取房间信息失败");
+					}
+				});
+			},
+			addRightWrong:function(questionId,states){ //添加错题记录
+				var num = this.geteNum
+				$.ajax({
+					type:"post",
+					url:http+"/consumerXSWQ/QuestionController/addRightWrong",
+					data:{
+						questionId :questionId,//题目id
+						states:states,//1 代表做错 2 代表错题本做对
+						token:token,
+						uid:uid
+					},
+					success:function(data){}
+				});
+			},
+			confirmStep: function() {
+	            if(action_==null){
+	                layerTC("请选择落点");
+	            }else{
+	                var gameId = GGame.get("game:id");
+	        		eve.f("HandlerAction", action_)();
+	                setTimeout(function(){
+	                    var queue = GGame.get("game:"+gameId+":queue");
+	                    if(action_ == queue[queue.length-1]){
+	                    	action_ = null;
+	                    }
+	                },1000);
+		            $('.fall').hide();
+		                this.target = 1
+		        }
+				
+				//第一次点击把音频文件播放一下 以后就可以随意播放了
+				if(this.MusicFlag){
+					/* $('#aswError')[0].play()
+					$('#aswError')[0].pause()
+					$('#aswRight')[0].play()
+					$('#aswRight')[0].pause()
+					console.log(111) */
+					this.MusicFlag = 0
+				}
+
+			},
+			moveStep: function(x, y) {
+				$this=this
+				var move = false;
+				if(action_ != null) {
+					var gameId = GGame.get("game:id");
+					var queue = GGame.get("game:" + gameId + ":queue");
+					var tryPlay = GGame.get("game:" + gameId + ":TryPlay");
+					var color = action_.substring(0, 1);
+					var xLoc = action_.substring(2, 3);
+					var yLoc = action_.substring(3, 4);
+					action_ = color + "[" + String.fromCharCode(xLoc.charCodeAt() + x) + String.fromCharCode(yLoc.charCodeAt() + y) + "]";
+					var array = new Array();
+					if(tryPlay === 1) {
+						queue = GGame.get("game:" + gameId + ":queueTraverse");
+					}
+					$.each(queue, function(index, item) {
+						if(item.indexOf(action_.substring(2, 4)) != -1) {
+							array.push(item);
+						}
+					});
+					if(array.length > 0) {
+						var last = array[array.length - 1];
+						if(last.length == 5) {
+							$this.moveStep(x, y);
+						} else {
+							move = true;
+						}
+					} else {
+						move = true;
+					}
+					if(move) {
+						eve.f("HandReply", action_)();
+					}
+				} else {
+					alert("请选择落点");
+				}
+			},
+			refresh:function(num){
+				$this=this
+				layerTC('刷新将扣除'+num+'水滴！',function(){
+					$('.imgBox').removeClass('wrong right')
+					$.ajax({
+						url:http+'/consumerXSWQ/MallController/useGold',
+						type:'post',
+						data:{
+							amount:num,
+							token:token,
+							uid:uid
+						},
+						success:function(data){
+							if(data.error.returnCode=='0'){
+								$this.searchQuestions();
+								//模块统计 点击刷新统计
+								$.ajax({
+									url:http+'/consumerXSWQ/StatisticsController/addModuleClick',
+									type:'post',
+									data:{
+										terminalType:2,
+										module:15,
+										token:token,
+										uid:uid
+									},
+									success:function(data){
+										err(data.error,function(){
+											
+										})
+									},
+								})
+								
+							}else if(data.error.returnCode=='1007'){
+								layerTC('水滴不足是否去充值！',function(){
+									document.location.href = 'myschema://go?a=12' //错题本水滴不足
+								})
+							}else {
+								layerTC(data.error.returnMessage)
+							}
+						}
+					})
+				})
+			},
+			searchQuestions:function(){ //获取题库列表
+				$this =this
+				var arr = decodeURIComponent(jsonlink().errorQuestionType).split(',');
+				console.log(arr)
+				var data = {
+					questionType: arr[0],
+					level: arr[1],
+					QuestionName:arr[2]||''
+				}
+				data.pageNum = 1;
+				data.pageSize = 10;
+				data.uid = uid;
+				data.token = token;
+				$.ajax({
+					url: http + '/consumerXSWQ/QuestionController/searchQuestions',
+					type: 'post',
+					data: data,
+					success: function(data) {
+						err(data.error,function(){
+							$this.questionList = data.data.list;
+							setCookie('wrongList',JSON.stringify(data.data.list))
+							setCookie('expiresTime',expires(1)) //过期时间
+							$this.isShow = 1
+							$this.loadMyJob($this.questionList[0].QuesionID ||$this.questionList[0].id)
+						})
+					}
+				});
+				//根据用户等级找合适的level等级
+				function level(){
+					var levelNum;
+					var K = [25, 20, 15, 10, 5, 2, 1];
+					var D = [1, 2, 3, 4, 5];
+					var userLevel = jsonlink().level;
+					if(userLevel){
+						if(userLevel.indexOf('k')>=0){
+							userLevel = parseInt(userLevel);
+							K.forEach(function(itm,index){
+								if(userLevel == itm){
+									levelNum = itm+'K';
+								}else if(userLevel<=itm && userLevel > K[index+1]){
+									levelNum = itm+'K';
+								}
+							})
+						}else if(userLevel.indexOf('D')>=0){
+							userLevel = parseInt(userLevel)
+							D.forEach(function(itm,index){
+								if(userLevel == itm){
+									levelNum = itm+'D';
+								}else if(userLevel<=itm && userLevel > D[index+1]){
+									levelNum = itm+'D';
+								}
+							})
+						}else{
+							levelNum = '25k';
+						}
+					}
+					return levelNum;
+				};
+			},
+			pretendRight:function(){ //一键答对
+				eve.f("_NotifyGameOver_")(13, 0, 0);
+			}
+		},
+		mounted:function(){
+			var $this = this;
+			//this.sekiguchiList() //获取所有已解锁关卡数据
+			
+			/* if(new Date()*1 >= readCookie('expiresTime')*1){
+				//console.log('过了凌晨了')
+				delCookie('wrongList');
+				delCookie('expiresTime')
+			}
+			
+			if(readCookie('wrongList')){
+				this.isShow = 1;
+				this.questionList = JSON.parse(readCookie('wrongList'));
+				this.loadMyJob(this.questionList[0].QuesionID ||this.questionList[0].id )
+			}else{
+				this.selectErrorQuestion()
+			} */
+			this.selectErrorQuestion()
+
+				
+
+			
+			//引导 脚本
+			~function(){
+				if(jsonlink().guide!=1){
+					return false
+				}
+				//01 显示引导 和 遮罩
+				$('#guide').show(); 
+				$('#shade').show();
+				//02 规则栏 高亮
+				$('#canvas_wrapper').addClass('guide2');
+				$('#finger').show(); //显示手指
+				$('#finger').css({ //移动手指到指定位置
+					'top': "1.5rem",
+					"left": "67%",
+				});
+				//显示
+				$('.guideTxt1').show();
+				var guideNum = 1;
+				$('#guide').click(function(){
+					switch (guideNum){
+						case 1:
+							$('#guide').hide(); 
+							$('#shade').hide();
+							$('#canvas_wrapper').removeClass('guide2');
+							guideNum ++;
+							break;
+					}
+				})  
+			}()
+			
+			
+
+			//落子声音
+			eve.on("HandlerAction", function(takeBlack, takeWhite) {
+				document.location.href = "myschema://go?a=8&music=STONE0";
+			});
+			// 棋盘加载完毕通知
+			eve.on("AppOnEnter", function() {
+				eve.f("SocketStart")();
+				console.log(1)
+				//加载完成
+				document.location.href = 'myschema://go?a=0'
+			});
+			eve.on("SocketOpen", function() {
+				console.log(2)
+				console.log("SocketOpen");
+				eve.f("HandlerSignInReq", uid)();
+			});
+
+			eve.on("SignInResponse", function() {
+				console.log(3)
+				console.log("SignInResponse, gameid is ", window.currentGameId);
+				eve.f("HandlerEnterGame", window.currentGameId)()
+				//;
+				if(sgfState == 3){
+					eve.f("HandlerTurnEditStatus")(14);
+				}else if(sgfState == 28){
+					eve.f("HandlerTurnEditStatus")(16);
+				}else if(sgfState == 34){
+					eve.f("HandlerTurnEditStatus")(17);
+				}
+			});
+
+			eve.on("_ConfirmTouchEnded_", function(p1, p2) {
+				var userid = uid;
+				var gameId = GGame.get("game:id");
+				var blackUserid = GGame.get("game:" + gameId + ":black");
+				var whiteUserid = GGame.get("game:" + gameId + ":white");
+				var tryPlay = GGame.get("game:" + gameId + ":TryPlay");
+				var editStatus = GGame.hincrBy("game:" + gameId + ":status", "edit", 0);
+				var matchStatus = GGame.hincrBy("game:" + gameId + ":status", "match", 0);
+				if(matchStatus >　0){
+					return;
+				}
+				if(tryPlay === 0 && editStatus != 14 && editStatus!=16 && editStatus != 17) {
+					if(blackUserid == userid) {
+						p2 = "B" + p2.substring(1, p2.length);
+					} else if(whiteUserid == userid) {
+						p2 = "W" + p2.substring(1, p2.length);
+					}
+				}
+				eve.f("HandReply", p2)();
+				action_ = p2;
+				exercises.target = 0
+			});
+			
+			/**
+			 *  游戏结束
+			 */
+			eve.on("_NotifyGameOver_", function(status, blackSum, whiteSum) {
+
+				if(status === 12) {
+					msgYN('msg-no', function() {
+						next()
+					})
+					document.location.href = "myschema://go?a=11&music=aswError"; //你再好好想想
+					$('.imgBox[data-id=' + window.quesionID + ']').removeClass('right').addClass('wrong');
+					$this.addRightWrong(window.quesionID,1) //添加错题本记录
+				} else if(status === 13) {
+					msgYN('msg-yes', function() {
+						next()
+					})
+					document.location.href = "myschema://go?a=11&music=aswRight";
+					 //恭喜你答对了
+					$('.imgBox[data-id=' + window.quesionID + ']').removeClass('wrong').addClass('right');
+					$this.addRightWrong(window.quesionID,2)
+				} else {
+					layerTC('游戏结束' + status)
+				}
+
+				function next() {
+					var oId = $('.imgBox[data-id=' + window.quesionID + ']').next().attr('data-id');
+					if(oId) {
+						$this.loadMyJob(oId);
+					}
+				}
+			});
+		}
+	})
+</script>
+</html>

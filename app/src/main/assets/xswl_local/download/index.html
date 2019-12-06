@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="download.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/lib/public.css"/>
+		<script src="layer_mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <link rel="stylesheet" type="text/css" href="layer_mobile/"/>
+		<link rel="stylesheet" type="text/css" href="../libs/layer/layer-v3.1.1/mobile/need/layer.css"/> -->
+		<!-- <script src="../libs/layer/layer-v3.1.1/mobile/layer.js" type="text/javascript" charset="utf-8"></script> -->
+		<title></title>
+		
+	</head>
+	<body
+		style="width: 100%; height: 100%; background: url(../img/lead.png) no-repeat !important; background-size: 100% 100% !important;">
+	</body>
+	<script>
+		document.documentElement.style.fontSize = document.documentElement.offsetWidth
+				/ 19.2 + "px";
+		window.onresize = function() {
+			document.documentElement.style.fontSize = document.documentElement.offsetWidth
+					/ 19.2 + "px";
+		}
+
+
+		if (navigator.userAgent.match(/(phone|iPhone)/i)) {
+			//alert('苹果手机')
+			layer.open({
+				content: 'ios端请到楼下技术部找宋必文安装！'
+				,btn: '我知道了'
+			});
+			//window.location.href = 'https://itunes.apple.com/cn/app/id1403425143'
+		} else if (navigator.userAgent.match(/(iPad)/i)) {
+			//alert('苹果平板')
+			layer.open({
+				content: 'ios端请到楼下技术部找宋必文安装！'
+				,btn: '我知道了'
+			});
+			//window.location.href = 'https://itunes.apple.com/cn/app/id1410054331'
+		} else if (navigator.userAgent.match(/(Android)/i)) {
+			//alert('安卓')
+			if (!is_weixn()) {
+				window.location.href = 'https://www.xswq361.cn/files/download/consumer/xsmj.apk'
+			}
+		} else {
+			//各种pc设备
+			//alert('其他设备')
+		}
+
+		//是否在微信打开
+		function is_weixn() {
+			var ua = navigator.userAgent.toLowerCase();
+			if (ua.match(/MicroMessenger/i) == "micromessenger") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
+</html>

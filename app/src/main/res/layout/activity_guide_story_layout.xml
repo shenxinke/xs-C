@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <ImageView
+        android:id="@+id/story_flower_vine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_9"
+        android:layout_marginRight="@dimen/dp_9"
+        android:layout_marginTop="@dimen/dp_34"
+        android:background="@mipmap/story_flower_vine"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/story_flower_one"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:src="@mipmap/story_flower_ajar"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_vine"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_two"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_vine" />
+
+    <ImageView
+        android:id="@+id/story_one_guide_head"
+        android:layout_width="@dimen/dp_61"
+        android:layout_height="@dimen/dp_62"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_30"
+        android:visibility="gone"
+        android:background="@mipmap/guide_head_image"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_one"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_one" />
+
+    <ImageView
+        android:id="@+id/guide_sotry_game_one"
+        android:layout_width="@dimen/dp_293"
+        android:layout_height="@dimen/dp_66"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:background="@mipmap/guide_sotry_game_one"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_one"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_one" />
+
+    <ImageView
+        android:id="@+id/story_flower_two"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_19"
+        android:visibility="invisible"
+        android:background="@mipmap/story_flower_ajar"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_one"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_three" />
+
+    <ImageView
+        android:id="@+id/story_two_guide_head"
+        android:layout_width="@dimen/dp_61"
+        android:layout_height="@dimen/dp_62"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@mipmap/guide_head_image"
+        app:layout_constraintLeft_toLeftOf="@+id/story_flower_two"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_two" />
+
+    <ImageView
+        android:id="@+id/guide_two_game_text"
+        android:layout_width="@dimen/dp_211"
+        android:layout_height="@dimen/dp_42"
+        android:visibility="gone"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:background="@mipmap/guide_sotry_game_two"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_two"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_two"
+        app:layout_constraintTop_toTopOf="@+id/story_flower_two" />
+
+    <ImageView
+        android:id="@+id/story_flower_three"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_7"
+        android:background="@mipmap/story_flower_bud"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_two"
+        app:layout_constraintRight_toLeftOf="@+id/story_flower_four" />
+
+    <ImageView
+        android:id="@+id/story_flower_four"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_30"
+        android:background="@mipmap/story_flower_bud"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/story_flower_one"
+        app:layout_constraintLeft_toRightOf="@+id/story_flower_three"
+        app:layout_constraintRight_toRightOf="@+id/story_flower_vine" />
+
+    <ImageView
+        android:id="@+id/story_windmill"
+        android:layout_width="@dimen/dp_73"
+        android:layout_height="@dimen/dp_73"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@mipmap/story_error_question"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/story_windmill_head"
+        android:layout_width="@dimen/dp_61"
+        android:layout_height="@dimen/dp_62"
+        android:layout_marginLeft="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_40"
+        android:visibility="gone"
+        android:background="@mipmap/guide_head_image"
+        app:layout_constraintLeft_toLeftOf="@+id/story_windmill"
+        app:layout_constraintTop_toTopOf="@+id/story_windmill" />
+
+    <ImageView
+        android:id="@+id/guide_windmill_text"
+        android:layout_width="@dimen/dp_145"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:background="@mipmap/guide_windmill_text"
+        android:layout_marginRight="@dimen/dp_15"
+        android:visibility="gone"
+        app:layout_constraintRight_toLeftOf="@+id/story_windmill"
+        app:layout_constraintBottom_toBottomOf="@+id/story_windmill"
+        app:layout_constraintTop_toTopOf="@+id/story_windmill" />
+</android.support.constraint.ConstraintLayout>

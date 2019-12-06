@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/share_info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="邀请 1 人，领取 10 水滴"
+        android:textColor="@color/color_be631f"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_get"
+        app:layout_constraintTop_toTopOf="@+id/button_get" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_14"
+        android:layout_height="@dimen/dp_17"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:background="@mipmap/main_money_image"
+        app:layout_constraintBottom_toBottomOf="@+id/share_info_text"
+        app:layout_constraintLeft_toRightOf="@+id/share_info_text"
+        app:layout_constraintTop_toTopOf="@+id/share_info_text" />
+
+    <TextView
+        android:id="@+id/button_get"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_22"
+        android:textColor="@color/wai_content_color"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:layout_marginTop="@dimen/dp_6"
+        app:layout_constraintTop_toBottomOf="@+id/button_get"
+        android:background="@color/color_ffd14c"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_1" />
+</android.support.constraint.ConstraintLayout>

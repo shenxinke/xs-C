@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/half">
+
+    <ImageView
+        android:id="@+id/image_bg"
+        android:layout_width="@dimen/dp_355"
+        android:layout_height="@dimen/dp_260"
+        android:background="@mipmap/settings_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/money_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:textColor="@color/color_8d3c00"
+        android:textSize="34sp"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <ImageView
+        android:id="@+id/wx_pay_logo"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:background="@mipmap/wx_pay_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
+
+    <TextView
+        android:id="@+id/popup_window_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_8e5605"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toTopOf="@+id/image_bg"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <Button
+        android:id="@+id/now_pay"
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_35"
+        android:background="@mipmap/yellow_button_bg"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="立即支付"
+        android:textColor="@color/color_8e5605"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/image_bg"
+        app:layout_constraintRight_toRightOf="@+id/image_bg"
+        app:layout_constraintTop_toBottomOf="@+id/wx_pay_logo" />
+</android.support.constraint.ConstraintLayout>

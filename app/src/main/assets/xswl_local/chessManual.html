@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/public.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/layer/layer-v3.1.1/layer/theme/default/layer.css" />
+	<link rel="stylesheet" type="text/css" href="css/custom/play.css">
+	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="libs/base64/base64.js"></script>
+	<script type="text/javascript" src="libs/vuejs/vue.js"></script>
+	<script type="text/javascript" src="libs/layer/layer-v3.1.1/layer/layer.js"></script>
+	<script type="text/javascript" src="js/custom/common.js"></script>
+	<script type='text/javascript' src="cocos2d/src/eve.js"></script>
+	<script type="text/javascript" src="js/lib/rem.js"></script>
+	<script type="text/javascript" src="js/lib/config.js"  charset="utf-8"></script>
+	<title>先手围棋智能教育服务平台 </title>
+</head>
+<body>
+	<div class="df ai-c jc-c rel h750" id='chessManual'>
+		<div class="df ai-c jc-c w1150 bg_activityPlay_main ha100 pr20 mr-70 rel">
+			<!-- 退出房间 -->
+			<div id="canvas_wrapper" class="h750 w750 rel lt10p tp10p">
+				<canvas id="gameCanvas" class="abs tp0" width="640" height="640" onmouseout='eve.f("NotifyMouseout")()'></canvas>
+			</div>
+			<div class="w380 h715 bg_activityPlayRt df ai-c jc-c">
+				<div class="bg_playRt_main h685 w360 pl70 pr70">
+					<div class="w220 df ai-c jc-sb fw-w">
+						<img src="img/play/play-3@2x.png" class="db w90 mt30" onclick="eve.f('HadlerGoToPreviousStep')()">
+						<img src="img/play/play-4@2x.png" class="db w90 mt30" onclick="eve.f('HadlerGoToNextStep')()">
+						<img src="img/play/play-2@2x.png" class="db w90 mt30" onclick="eve.f('HadlerGoToRewind')()">
+						<img src="img/play/play-5@2x.png" class="db w90 mt30" onclick="eve.f('HadlerGoToForward')()">
+						<img src="img/play/play-1@2x.png" class="db w90 mt30" onclick="eve.f('HadlerGoToHead')()">
+						<img src="img/play/play-6@2x.png" class="db w90 mt30" onclick="eve.f('HadlerGoToTail')()">
+					</div>
+					<!-- 操作按钮 -->
+					<div :class='["w220 df ai-c jc-sa fw-w",tryFlag?"h300 mt30":"h200 mt60"]'>
+						<button type="button" class="bn on confirmStep db h72 w220 tc" v-show="stepFlag" onclick="confirmStep()">
+							<span class="mb16 w220 tc db fl fs30 cba2d38 fwb">确认落子</span>
+						</button>
+						<button type="button" class="bn on play_chessNm_btn db h72 w220 tc rel" @click="tryPlay(tryFlag)">
+							<span class="mb16 w220 tc db fl fs30 c4b8e05 fwb">{{tryFlag==1?'结束试下':'试下'}}</span>
+						</button>
+						<button type="button" class="bn on play_Undo_btn db h72 w220 tc" @click="toggleShowStep">
+							<span class="mb16 w220 tc db fl fs30 c8e5605 fwb">显示手数</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+$.getScript('chess.min.js');
+$('#gameCanvas').attr('width',$('body').height()-20).attr('height',$('body').height()-20);//.width('480').height('480')
+var action_ = null;
+var vmManualModal = new Vue({
+	el : "#chessManual",
+	data : {
+			tryFlag:0,
+			stepFlag:false,
+			historyGameId:Tool.queryString("historyGameId")
+	},
+	methods : {
+		loadChess : function(chessId,chessData) {
+			$.ajax({
+				type : "POST",
+				url : http+"/consumerXSWQ/ChessController/loadChess",
+				data : $.param({chessid: chessId,token:token,uid:uid}),
+				dataType : 'json',
+				success : function(data) {
+					console.log("loadChess", data);
+					window.currentGameId = data.data.chessid;
+					eve.f("HandlerSignInReq", uid)();
+					document.location.href ="myschema://go?a=0";
+					setTimeout(function(){
+						eve.f("HadlerTryPlayEnd")();
+		                eve.f("HadlerResearchPlayEnd")();
+					},1000)
+				},
+				error : function(XMLHttpRequest, data) {
+					document.location.href ="myschema://go?a=0"
+				}
+			});
+		},
+		tryPlay:function(flag){
+			if(flag==0){
+				this.tryFlag = 1;
+				eve.f("HadlerResearchPlayStart")();
+				eve.f("HadlerTryPlayStart")();
+			}else{
+				this.tryFlag = 0;
+				eve.f("HadlerTryPlayEnd")();
+				eve.f("HadlerResearchPlayEnd")();
+				eve.f("HandlerHideStep")();
+				window.stepShown = false;
+			}
+			this.stepFlag = !this.stepFlag;
+		},
+		toggleShowStep() {
+			if(window.stepShown) {
+				eve.f("HandlerHideStep")();
+				window.stepShown = false;
+			} else {
+				eve.f("HandlerShowStep")();
+				window.stepShown = true;
+			}
+		}
+	},
+	mounted(){
+		this.loadChess(this.historyGameId);
+	}
+});
+function confirmStep(){
+    if(action_==null){
+        layerTC("请选择落点");
+    }else{
+        var x = action_.substring(2,3).charCodeAt()-97;
+        var y = action_.substring(3,4).charCodeAt()-97;
+        var gameId = GGame.get("game:id");
+        var road = GGame.get("game:" + gameId + ":road");
+        if(x < 0 || x >= road.x || y < 0 || y >= road.x){
+            layerTC("请选择正确落点");
+            return;
+        }
+        eve.f("HandlerAction", action_)();
+        setTimeout(function(){
+           var TryPlay = GGame.get("game:"+gameId+":TryPlay");
+           var queue = GGame.get("game:"+gameId+":queue");
+           if(TryPlay == 1){
+        	   queue = GGame.get("game:"+gameId+":queueTraverse");
+           }
+           if(action_ == queue[queue.length-1]){
+         	  action_ = null;
+           }
+       },400);
+    }
+}
+
+eve.on("SocketOpen", function () {
+    eve.f("HandlerReEnterGame")();
+    eve.f("HandlerSignInReq",uid)();
+    //
+});
+eve.on("AppOnEnter", function() {
+	eve.f("SocketStart")();
+});
+eve.on("SignInResponse", function() {
+	eve.f("HandlerEnterGame", window.currentGameId)();
+});
+var takeBlack_now = 0;
+var takeWhite_now = 0;
+eve.on("_ShowTake_", function(takeBlack, takeWhite) {
+	if(takeBlack>takeBlack_now){//提子音
+		document.location.href = "myschema://go?a=8&music=ChipMany";
+		takeBlack_now = takeBlack;
+		return;
+	}
+	if(takeWhite>takeWhite_now){//提子音
+		document.location.href = "myschema://go?a=8&music=ChipMany";
+		takeWhite_now = takeWhite;
+		return;
+	}
+});
+//落子声音
+eve.on("HandlerAction", function(takeBlack, takeWhite) {
+	document.location.href = "myschema://go?a=8&music=STONE0";
+});
+eve.on("_ConfirmTouchEnded_", function(p1, p2) {
+	var gameId = GGame.get("game:id");
+	var blackUserid = GGame.get("game:"+gameId+":black");
+	var whiteUserid = GGame.get("game:"+gameId+":white");
+	var tryPlay = GGame.get("game:"+gameId+":TryPlay");
+	var steps = GGame.incrBy("game:" + gameId + ":steps", 0);
+	var first = GGame.incrBy("game:" + gameId + ":first", 0);
+	if(tryPlay === 0){
+		if(blackUserid == uid){
+			p2 = "B"+p2.substring(1,p2.length);
+		}else if(whiteUserid == uid){
+			p2 = "W"+p2.substring(1,p2.length);
+		}
+		if (steps % 2 === first) {
+			//当前状态走黑棋
+			if(p2.charAt(0) == "W"){
+				return;
+			}
+		}else{
+			if(p2.charAt(0) == "B"){
+				//("当前白棋落子")
+				return;
+			}
+		}
+	}
+  	eve.f("HandReply",p2)();
+  	action_ = p2;
+});
+</script>
+</html>

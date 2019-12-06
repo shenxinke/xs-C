@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_invitation_bg">
+
+    <ImageView
+        android:id="@+id/invitation_bg"
+        android:layout_width="@dimen/dp_595"
+        android:layout_height="match_parent"
+        android:background="@mipmap/invitation_bg"
+        android:layout_marginBottom="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/main_invitation_title"
+        android:layout_width="@dimen/dp_345"
+        android:layout_height="@dimen/dp_99"
+        android:layout_marginTop="@dimen/dp_38"
+        android:background="@mipmap/main_invitation_title"
+        app:layout_constraintLeft_toLeftOf="@+id/invitation_bg"
+        app:layout_constraintRight_toRightOf="@+id/invitation_bg"
+        app:layout_constraintTop_toTopOf="@+id/invitation_bg" />
+
+    <LinearLayout
+        android:id="@+id/invitation_linear_layout"
+        android:layout_width="@dimen/dp_84"
+        android:layout_height="@dimen/dp_20"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/main_invitation_title"
+        app:layout_constraintLeft_toLeftOf="@+id/main_invitation_title"
+        app:layout_constraintRight_toRightOf="@+id/main_invitation_title">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="已邀请:"
+            android:textColor="@color/color_8e5605" />
+
+        <TextView
+            android:id="@+id/invitation_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/color_ff3800" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="人"
+            android:textColor="@color/color_8e5605" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/main_invitation_button_bg"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@mipmap/main_invitation_button_bg"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="立即邀请好友"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/invitation_bg"
+        app:layout_constraintRight_toRightOf="@+id/invitation_bg"
+        app:layout_constraintTop_toBottomOf="@+id/main_invitation_title" />
+
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="@dimen/dp_482"
+        android:layout_height="@dimen/dp_135"
+        android:layout_marginTop="@dimen/dp_5"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1px"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_invitation_button_bg" />
+
+    <ImageView
+        android:id="@+id/green_back"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_14"
+        android:src="@mipmap/green_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
